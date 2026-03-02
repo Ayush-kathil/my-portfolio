@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-inter); /* Can also default mono to inter if desired, or keep a separate mono font */
+}
+
+@layer base {
+  :root {
+    /* LIGHT THEME (Classical Editorial Parchment) */
+    --bg-primary: #f4f0ea;
+    --bg-secondary: #e8e2d9;
+    --text-primary: #151515;
+    --text-secondary: #666666;
+    --border-color: #d1ccc5;
+    --accent: #151515;
+  }
+
+  .dark {
+    /* DARK THEME (Classical Editorial Charcoal) */
+    --bg-primary: #151515;
+    --bg-secondary: #1c1c1c;
+    --text-primary: #f4f0ea;
+    --text-secondary: #9c9c9c;
+    --border-color: #2e2e2e;
+    --accent: #f4f0ea;
+  }
+}
+
+/* Global SVG Grain Overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans), sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Lenis Smooth Scroll Recommended CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
