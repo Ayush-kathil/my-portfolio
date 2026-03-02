@@ -83,24 +83,24 @@ export default function Hero({ preloaderComplete = true }: { preloaderComplete?:
       <div className="z-10 mt-auto w-full flex flex-col xl:flex-row xl:items-end justify-between gap-12 xl:gap-24 relative">
         
         <div className="w-full xl:w-2/3">
-          <h1 className="text-[14vw] xl:text-[11vw] leading-[0.9] font-semibold tracking-tighter mb-8 text-[var(--text-primary)]">
-            <div className="overflow-hidden pb-2">
+          <h1 className="text-[18vw] sm:text-[14vw] xl:text-[11vw] leading-[0.9] font-semibold tracking-tighter mb-8 text-[var(--text-primary)]">
+            <div className="overflow-hidden pb-1 md:pb-2">
               <div ref={title1Ref} className="origin-bottom-left will-change-transform uppercase">
                 AYUSH
               </div>
             </div>
-            <div className="overflow-hidden pb-4 md:pb-6">
+            <div className="overflow-hidden pb-2 md:pb-6">
               <div ref={title2Ref} className="origin-bottom-left will-change-transform uppercase text-[var(--text-secondary)]">
                 GUPTA
               </div>
             </div>
           </h1>
           
-          <div ref={subtitleRef} className="max-w-2xl pl-2 border-l-2 border-[var(--text-primary)] text-left">
+          <div ref={subtitleRef} className="max-w-2xl pl-3 border-l-2 md:border-l-4 border-[var(--text-primary)] text-left mb-8 xl:mb-0">
              <Typewriter 
                text="Software engineer and student, passionate about building robust applications, exploring machine learning, and creating seamless software experiences."
                delay={0.01}
-               className="text-lg md:text-2xl lg:text-3xl font-light leading-snug text-[var(--text-primary)] text-left"
+               className="text-base sm:text-lg md:text-2xl lg:text-3xl font-light leading-snug text-[var(--text-primary)] text-left"
              />
           </div>
         </div>

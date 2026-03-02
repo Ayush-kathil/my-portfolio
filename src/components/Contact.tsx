@@ -75,19 +75,19 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 justify-between">
         
         <div ref={leftColRef} className="lg:w-1/2">
-          <h2 className="text-[50px] md:text-[72px] font-medium tracking-[-2px] md:tracking-[-4.32px] leading-none uppercase mb-8">
+          <h2 className="text-5xl sm:text-6xl md:text-[72px] font-medium tracking-tight md:tracking-[-4.32px] leading-[1.1] uppercase mb-6 md:mb-8">
             Get In Touch
           </h2>
-          <p className="text-xl md:text-2xl font-light text-[var(--text-secondary)] mb-12">
+          <p className="text-lg md:text-2xl font-light text-[var(--text-secondary)] mb-10 md:mb-12">
             Looking for a summer internship or open to exciting collaboration opportunities.
           </p>
           
           <div className="space-y-6">
-            <a href="mailto:kathilshiva@gmail.com" className="flex items-center gap-6 text-xl md:text-3xl font-mono uppercase hover:text-[var(--text-secondary)] transition-colors group">
-              <Mail className="w-8 h-8 group-hover:scale-110 transition-transform" /> kathilshiva@gmail.com
+            <a href="mailto:kathilshiva@gmail.com" className="flex items-center gap-4 md:gap-6 text-lg sm:text-2xl md:text-3xl font-mono uppercase hover:text-[var(--text-secondary)] transition-colors group">
+              <Mail className="w-6 h-6 md:w-8 md:h-8 group-hover:scale-110 transition-transform" /> kathilshiva@gmail.com
             </a>
-            <a href="tel:7007226872" className="flex items-center gap-6 text-xl md:text-3xl font-mono uppercase hover:text-[var(--text-secondary)] transition-colors group">
-              <Phone className="w-8 h-8 group-hover:scale-110 transition-transform" /> 7007226872
+            <a href="tel:7007226872" className="flex items-center gap-4 md:gap-6 text-lg sm:text-2xl md:text-3xl font-mono uppercase hover:text-[var(--text-secondary)] transition-colors group">
+              <Phone className="w-6 h-6 md:w-8 md:h-8 group-hover:scale-110 transition-transform" /> 7007226872
             </a>
           </div>
         </div>
@@ -100,7 +100,7 @@ export default function Contact() {
                 placeholder="YOUR NAME" 
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
-                className="w-full bg-transparent text-xl md:text-2xl py-4 flex-1 outline-none text-[var(--text-primary)] placeholder-[var(--text-primary)]"
+                className="w-full bg-transparent text-lg md:text-2xl py-3 md:py-4 flex-1 outline-none text-[var(--text-primary)] placeholder-[var(--text-primary)]"
                 suppressHydrationWarning
               />
               {errors.name && <span className="text-red-500 font-mono text-xs uppercase absolute bottom-0 right-0">{errors.name}</span>}
@@ -112,7 +112,7 @@ export default function Contact() {
                 placeholder="YOUR EMAIL" 
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="w-full bg-transparent text-xl md:text-2xl py-4 flex-1 outline-none text-[var(--text-primary)] placeholder-[var(--text-primary)]"
+                className="w-full bg-transparent text-lg md:text-2xl py-3 md:py-4 flex-1 outline-none text-[var(--text-primary)] placeholder-[var(--text-primary)]"
                 suppressHydrationWarning
               />
               {errors.email && <span className="text-red-500 font-mono text-xs uppercase absolute bottom-0 right-0">{errors.email}</span>}
@@ -124,16 +124,16 @@ export default function Contact() {
                 rows={4}
                 value={formData.message}
                 onChange={(e) => setFormData({...formData, message: e.target.value})}
-                className="w-full bg-transparent text-xl md:text-2xl py-4 flex-1 outline-none text-[var(--text-primary)] placeholder-[var(--text-primary)] resize-none"
+                className="w-full bg-transparent text-lg md:text-2xl py-3 md:py-4 flex-1 outline-none text-[var(--text-primary)] placeholder-[var(--text-primary)] resize-none"
                 suppressHydrationWarning
               />
-              {errors.message && <span className="text-red-500 font-mono text-xs uppercase absolute bottom-4 right-0">{errors.message}</span>}
+              {errors.message && <span className="text-red-500 font-mono text-xs uppercase absolute bottom-2 md:bottom-4 right-0">{errors.message}</span>}
             </div>
 
             <button 
               type="submit" 
               disabled={status === "submitting" || status === "success"}
-              className="mt-8 border-2 border-[var(--text-primary)] bg-transparent text-[var(--text-primary)] font-bold uppercase tracking-widest text-lg w-full py-6 hover:bg-[var(--text-primary)] hover:text-[var(--bg-secondary)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="mt-6 md:mt-8 border-2 border-[var(--text-primary)] bg-transparent text-[var(--text-primary)] font-bold uppercase tracking-widest text-base md:text-lg w-full py-4 md:py-6 hover:bg-[var(--text-primary)] hover:text-[var(--bg-secondary)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               suppressHydrationWarning
             >
               {status === "submitting" ? "SENDING..." : status === "success" ? "TRANSMITTED!" : "SEND MESSAGE"}

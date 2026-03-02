@@ -19,6 +19,9 @@ export default function ThemeToggle() {
   }, []);
 
   const toggleTheme = () => {
+    // Inject crossfading engine
+    document.documentElement.classList.add("theme-transition");
+    
     if (theme === "dark") {
       setTheme("light");
       document.documentElement.classList.remove("dark");
@@ -28,6 +31,11 @@ export default function ThemeToggle() {
       document.documentElement.classList.add("dark");
       localStorage.setItem("portfolio-theme", "dark");
     }
+    
+    // Clean up crossfading engine to not ruin hover animations
+    setTimeout(() => {
+      document.documentElement.classList.remove("theme-transition");
+    }, 400); // Wait 400ms for the color transitions to complete
   };
 
   return (

@@ -55,10 +55,10 @@ export default function ImpactMetrics() {
           </p>
         </div>
 
-        <div className="w-full md:w-2/3 grid grid-cols-2 gap-x-8 gap-y-16">
+        <div className="w-full md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12 md:gap-y-16 mt-12 md:mt-0">
           {metrics.map((metric, i) => (
-            <div key={i} className="flex flex-col border-l border-[var(--border-color)] pl-6 cursor-default group hover:border-[var(--text-primary)] transition-colors duration-500">
-              <div className="text-[50px] md:text-[72px] font-medium tracking-[-2px] md:tracking-[-4.32px] leading-none mb-2 group-hover:text-[var(--text-secondary)] transition-colors">
+            <div key={i} className="flex flex-col border-l-2 border-[var(--border-color)] pl-4 md:pl-6 cursor-default group hover:border-[var(--text-primary)] transition-colors duration-500">
+              <div className="text-4xl sm:text-5xl md:text-[72px] font-medium tracking-tight md:tracking-[-4.32px] leading-none mb-2 md:mb-4 group-hover:text-[var(--text-secondary)] transition-colors">
                 <span ref={(el) => { numberRefs.current[i] = el; }}>0</span>
                 <span>{metric.suffix}</span>
               </div>

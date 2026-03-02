@@ -2,7 +2,9 @@
 
 @theme {
   --font-sans: var(--font-inter);
-  --font-mono: var(--font-inter); /* Can also default mono to inter if desired, or keep a separate mono font */
+  --font-mono: var(
+    --font-inter
+  ); /* Can also default mono to inter if desired, or keep a separate mono font */
 }
 
 @layer base {
@@ -27,6 +29,19 @@
   }
 }
 
+/* Smooth Theme Toggling CSS */
+.theme-transition,
+.theme-transition *,
+.theme-transition *:before,
+.theme-transition *:after {
+  transition:
+    background-color 0.4s ease,
+    border-color 0.4s ease,
+    color 0.4s ease,
+    opacity 0.4s ease !important;
+  transition-delay: 0s !important;
+}
+
 /* Global SVG Grain Overlay */
 .grain-overlay {
   position: fixed;
@@ -44,7 +59,8 @@
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: var(--font-sans), sans-serif;
+  font-family:
+    var(--font-sans), sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -1,5 +1,15 @@
 export const projectsData = [
   {
+    slug: "pdf-editx",
+    title: "PDF Editx",
+    desc: "Essential utilities for your documents: password removal, compression, and image optimization locally.",
+    tags: ["React", "PDF Utilities", "Security"],
+    about: "A fast, secure, and fully client-side suite for managing PDF and image files. It empowers users to compress files, handle optimizations, and remove password protections completely offline without uploading sensitive files to servers.",
+    githubUrl: "https://github.com/Ayush-kathil",
+    liveUrl: "https://pdfeditx.vercel.app/",
+    image: "/projects/pdf-edit.png"
+  },
+  {
     slug: "herway-ai-safety",
     title: `"HerWay" AI Women Safety`,
     desc: "AI-powered exhibition project focused on real-time risk assessment and safety prediction.",
@@ -51,6 +61,7 @@ export const projectsData = [
     tags: ["HTML", "CSS", "JS"],
     about: "A beautiful, fully responsive frontend UI for a hotel booking platform. Deployed on Netlify, it demonstrates foundational but strict adherence to mobile-first CSS, accessibility standards, and performant vanilla JavaScript interactions.",
     githubUrl: "https://github.com/Ayush-kathil",
-    liveUrl: "https://hotel-sunrise-booking.netlify.app/"
+    liveUrl: "https://hotel-sunrise-booking.netlify.app/",
+    image: "/projects/hotel-sunrise.png"
   }
 ];

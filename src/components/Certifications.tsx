@@ -49,9 +49,9 @@ export default function Certifications() {
     <CurvedSection className="bg-[var(--bg-secondary)] border-t-[4px] border-t-[var(--text-primary)] z-30" id="certifications">
       <section ref={containerRef} className="w-full text-[var(--text-primary)] px-6 md:px-12 py-32 relative">
         <div className="max-w-7xl mx-auto w-full">
-          <div className="flex items-center justify-between mb-16 border-b border-[var(--border-color)] pb-8">
-            <h2 className="text-[50px] md:text-[72px] font-medium tracking-[-2px] md:tracking-[-4.32px] leading-none uppercase flex items-center gap-6">
-              <Award className="w-12 h-12 md:w-20 md:h-20" /> <TextReveal>Certifications</TextReveal>
+          <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 md:mb-16 border-b border-[var(--border-color)] pb-6 md:pb-8">
+            <h2 className="text-4xl sm:text-5xl md:text-[72px] font-medium tracking-tight md:tracking-[-4.32px] leading-[1.1] uppercase flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+              <Award className="w-12 h-12 md:w-20 md:h-20 text-[var(--text-secondary)]" /> <TextReveal>Certifications</TextReveal>
             </h2>
           </div>
           

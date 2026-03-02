@@ -3,7 +3,7 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import CardSection from "@/components/CardSection";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,7 +39,10 @@ export default function About() {
   }, []);
 
   return (
-    <CardSection className="bg-[var(--bg-secondary)] relative z-20 shadow-2xl border-t-[4px] border-t-[var(--text-primary)]" id="about">
+    <div 
+      id="about"
+      className="relative w-full z-20 border-t-[4px] border-t-[var(--text-primary)] border-[var(--border-color)] rounded-t-[2.5rem] -mt-10 shadow-2xl bg-[var(--bg-secondary)]"
+    >
       <section ref={sectionRef} className="w-full min-h-screen text-[var(--text-primary)] px-6 md:px-12 py-32 flex flex-col justify-center">
         <div className="max-w-7xl mx-auto w-full">
           <h2 className="text-[50px] md:text-[72px] font-medium tracking-[-2px] md:tracking-[-4.32px] leading-none uppercase mb-12 border-b border-[var(--border-color)] pb-8 text-left">
@@ -81,6 +84,6 @@ export default function About() {
           </div>
         </div>
       </section>
-    </CardSection>
+    </div>
   );
 }

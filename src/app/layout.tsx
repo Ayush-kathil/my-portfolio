@@ -13,6 +13,9 @@ const interFont = Inter({
 export const metadata: Metadata = {
   title: "Ayush Gupta | Creative Developer & AI Student",
   description: "Portfolio of Ayush Gupta - B.Tech CSE (AIML) Student intersecting AI with robust software engineering.",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
@@ -21,7 +24,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                if (localStorage.getItem('portfolio-theme') === 'light' || (!('portfolio-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+                  document.documentElement.classList.remove('dark');
+                } else {
+                  document.documentElement.classList.add('dark');
+                }
+              } catch (_) {}
+            `,
+          }}
+        />
+      </head>
       <body
         className={`${interFont.variable} font-sans antialiased`}
       >
