@@ -24,7 +24,8 @@ export const projectsData = [
     challenges: "The main challenge was balancing recall with precision so we could catch real threats without flagging too many legitimate apps.",
     impact: "The multi-signal approach improved detection quality over single-signal baselines and reduced missed malicious samples.",
     githubUrl: "https://github.com/Ayush-kathil/Cyberia---Detecting-Fake-Banking-APKs",
-    liveUrl: "#"
+    liveUrl: "#",
+    image: "https://opengraph.githubassets.com/1/Ayush-kathil/Cyberia---Detecting-Fake-Banking-APKs"
   },
   {
     slug: "yoga-pose-detection",
@@ -37,7 +38,8 @@ export const projectsData = [
     challenges: "Keeping the frame rate stable on CPU-only laptops was the key challenge. I tuned model complexity and reduced per-frame computation overhead.",
     impact: "The system runs in real time on standard hardware and provides actionable posture feedback without requiring cloud inference.",
     githubUrl: "https://github.com/Ayush-kathil/yoga-pose-detection",
-    liveUrl: "#"
+    liveUrl: "#",
+    image: "https://opengraph.githubassets.com/1/Ayush-kathil/YPDS-Yoga-Pose-Detection-System"
   },
   {
     slug: "credit-card-fraud",
@@ -50,7 +52,8 @@ export const projectsData = [
     challenges: "The hardest part was choosing a threshold that improved recall without creating too many false positives for legitimate users.",
     impact: "The final pipeline delivered a healthier precision-recall balance than the baseline and gave a realistic setup for production-style decision thresholds.",
     githubUrl: "https://github.com/Ayush-kathil/Credit-Card-Fraud-Detection",
-    liveUrl: "#"
+    liveUrl: "#",
+    image: "https://opengraph.githubassets.com/1/Ayush-kathil/Credit-Card-Fraud-Detection"
   },
   {
     slug: "herway-ai-safety",
@@ -63,6 +66,77 @@ export const projectsData = [
     challenges: "Data quality and fairness were the biggest challenges. We had to handle incomplete data and avoid building a model that reinforces bias.",
     impact: "We delivered a working prototype with real-time scoring during the hackathon and validated the concept with live demo scenarios.",
     githubUrl: "https://github.com/Ayush-kathil/HerWay",
-    liveUrl: "#"
+    liveUrl: "#",
+    image: "https://opengraph.githubassets.com/1/Ayush-kathil/herway-women-safety-navigation-system"
+  },
+  {
+    slug: "hotel-sunrise",
+    title: "Hotel Sunrise",
+    desc: "Responsive hotel website with modern booking-focused UI, room highlights, and smooth section-based navigation.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+    about: "Hotel Sunrise is a modern hospitality website focused on visual storytelling, room discovery, and a clean booking-first flow.",
+    problemStatement: "Many small hotel websites feel outdated and make it hard for users to quickly evaluate rooms and complete booking actions.",
+    architecture: "Built with Next.js and TypeScript, the site uses component-driven sections, responsive layouts, and lightweight animations for a premium browsing experience.",
+    challenges: "The key challenge was balancing rich visuals with performance, especially on mobile devices where large images can hurt load times.",
+    impact: "The project demonstrates production-ready frontend patterns for hospitality products and is deployed live for public access.",
+    githubUrl: "https://github.com/Ayush-kathil/Hotel-Sunrise",
+    liveUrl: "https://welcomesunrise.vercel.app",
+    image: "/projects/hotel-sunrise.png"
+  },
+  {
+    slug: "grade-calculator",
+    title: "Grade Calculator",
+    desc: "Glassmorphic CGPA and percentage calculator with dark/light mode, smooth transitions, and student-friendly UX.",
+    tags: ["HTML", "CSS", "JavaScript"],
+    about: "This tool helps students instantly compute CGPA and percentage results with a polished UI and easy step-by-step inputs.",
+    problemStatement: "Students often rely on ad-hoc spreadsheets or manual formulas that are error-prone and time-consuming during exam cycles.",
+    architecture: "A lightweight frontend app built with semantic HTML, custom CSS styling, and JavaScript logic for score conversion and validation.",
+    challenges: "The hardest part was keeping calculations accurate across grading edge cases while maintaining a clean, premium visual design.",
+    impact: "The app is publicly deployed and useful for quick academic calculations without installation or account setup.",
+    githubUrl: "https://github.com/Ayush-kathil/Grade-Calculator",
+    liveUrl: "https://grade-calculator-rho-dun.vercel.app",
+    image: "https://opengraph.githubassets.com/1/Ayush-kathil/Grade-Calculator"
+  },
+  {
+    slug: "smart-file-organizer",
+    title: "SFORA Smart File Organizer",
+    desc: "Rule-based desktop automation utility to sort and organize files into structured folders with minimal manual effort.",
+    tags: ["Java", "Automation", "Desktop"],
+    about: "SFORA automates repetitive file-management tasks by applying predefined rules and moving files into categorized destinations.",
+    problemStatement: "Manual file organization wastes time and leads to cluttered workspaces, especially for users handling many downloads daily.",
+    architecture: "Implemented in Java with a rule engine for file-type matching and destination mapping, designed for extensibility and predictable behavior.",
+    challenges: "Designing reliable conflict handling and safe file moves was critical to prevent accidental overwrites during bulk operations.",
+    impact: "The project showcases practical desktop automation and demonstrates how simple rules can significantly improve workflow productivity.",
+    githubUrl: "https://github.com/Ayush-kathil/SFORA-Smart-File-Organizer",
+    liveUrl: "#",
+    image: "https://opengraph.githubassets.com/1/Ayush-kathil/SFORA-Smart-File-Organizer"
+  },
+  {
+    slug: "tic-tac-toe-game",
+    title: "Tic Tac Toe Game",
+    desc: "Interactive two-player browser game with win/draw detection, turn logic, and responsive interface design.",
+    tags: ["HTML", "CSS", "JavaScript"],
+    about: "A clean and lightweight implementation of classic Tic Tac Toe built to practice game-state management in vanilla JavaScript.",
+    problemStatement: "Simple game projects are ideal for mastering event handling and state transitions, but many examples ignore UX polish.",
+    architecture: "Built as a static web app with modular game logic, DOM-driven rendering, and reset flows for quick replay.",
+    challenges: "The primary challenge was ensuring accurate win-state checks and preventing invalid moves across rapid interactions.",
+    impact: "The project is a solid reference for beginner-friendly frontend game architecture with responsive behavior across devices.",
+    githubUrl: "https://github.com/Ayush-kathil/tic-tac-toe-game",
+    liveUrl: "#",
+    image: "https://opengraph.githubassets.com/1/Ayush-kathil/tic-tac-toe-game"
+  },
+  {
+    slug: "my-portfolio",
+    title: "My Portfolio",
+    desc: "Personal developer portfolio featuring projects, skills, and contact touchpoints with a modern animated frontend.",
+    tags: ["Next.js", "TypeScript", "Frontend"],
+    about: "This repository contains a portfolio website focused on showcasing work clearly while keeping the interface fast and expressive.",
+    problemStatement: "Developers need a central place to present projects and experience, but generic templates often fail to reflect personal identity.",
+    architecture: "The app uses Next.js with reusable UI sections, route-based structure, and deploy-ready configuration for Vercel hosting.",
+    challenges: "Maintaining visual quality while keeping performance and accessibility in a good range required iterative tuning.",
+    impact: "The site is live and acts as a single destination for project discovery, experience overview, and collaboration contact.",
+    githubUrl: "https://github.com/Ayush-kathil/my-portfolio",
+    liveUrl: "https://ayushgupta3.vercel.app",
+    image: "https://opengraph.githubassets.com/1/Ayush-kathil/my-portfolio"
   },
 ];
