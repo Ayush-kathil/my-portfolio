@@ -36,9 +36,9 @@ export default function MobileGateway({ preloaderComplete = true }: MobileGatewa
             },
           },
         }}
-        className="relative z-10 px-4 pt-24 pb-16"
+        className="relative z-10 px-4 pt-24 pb-32"
       >
-        <motion.section variants={cardVariants} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} className="rounded-3xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/70 backdrop-blur-xl p-6 shadow-xl">
+        <motion.section id="gateway" variants={cardVariants} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} className="rounded-3xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/70 backdrop-blur-xl p-6 shadow-xl scroll-mt-24">
           <p className="text-[11px] uppercase tracking-[0.22em] text-[var(--text-secondary)] mb-4">Professional Gateway</p>
           <h1 className="text-[clamp(2rem,10vw,3.2rem)] font-semibold leading-[0.95] tracking-tight uppercase mb-4">
             Ayush Gupta
@@ -102,7 +102,7 @@ export default function MobileGateway({ preloaderComplete = true }: MobileGatewa
           </div>
         </motion.section>
 
-        <motion.section variants={cardVariants} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} className="mt-5">
+        <motion.section id="projects" variants={cardVariants} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} className="mt-5 scroll-mt-24">
           <div className="flex items-center justify-between mb-4">
             <p className="text-[11px] uppercase tracking-[0.22em] text-[var(--text-secondary)]">Featured Work</p>
             <span className="text-xs text-[var(--text-secondary)]">{projectsData.length} projects</span>
@@ -146,6 +146,31 @@ export default function MobileGateway({ preloaderComplete = true }: MobileGatewa
                 </div>
               </motion.article>
             ))}
+          </div>
+        </motion.section>
+
+        <motion.section id="contact" variants={cardVariants} transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }} className="mt-5 rounded-3xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/70 backdrop-blur-xl p-5 scroll-mt-24">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-[var(--text-secondary)] mb-4">Contact Gateway</p>
+          <p className="text-sm leading-relaxed text-[var(--text-secondary)] mb-4">
+            Open to internships and software engineering opportunities where I can ship high-impact AI and web systems.
+          </p>
+          <div className="grid grid-cols-1 gap-3">
+            <a
+              href="mailto:kathilshiva@gmail.com"
+              className="inline-flex items-center justify-between rounded-full border border-[var(--border-color)] px-5 py-3.5 bg-[var(--bg-primary)] hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-colors"
+            >
+              <span className="text-sm font-medium">Email</span>
+              <ArrowUpRight size={16} />
+            </a>
+            <a
+              href="https://linkedin.com/in/Ayush-kathil"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-between rounded-full border border-[var(--border-color)] px-5 py-3.5 bg-[var(--bg-primary)] hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-colors"
+            >
+              <span className="text-sm font-medium">LinkedIn</span>
+              <ArrowUpRight size={16} />
+            </a>
           </div>
         </motion.section>
       </motion.main>
