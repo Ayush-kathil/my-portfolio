@@ -78,6 +78,18 @@ export default function ThemeToggle() {
     };
   };
 
+  const snapToHorizontalEdge = (x: number, y: number) => {
+    if (typeof window === "undefined") {
+      return { x, y };
+    }
+
+    const buttonSize = 56;
+    const edgePadding = 8;
+    const maxX = Math.max(edgePadding, window.innerWidth - buttonSize - edgePadding);
+    const snappedX = x < window.innerWidth / 2 ? edgePadding : maxX;
+    return clampMobilePos(snappedX, y);
+  };
+
   const handlePointerDown = (event: ReactPointerEvent<HTMLButtonElement>) => {
     if (!isMobile) {
       return;
@@ -119,7 +131,15 @@ export default function ThemeToggle() {
     if (!dragging) {
       toggleTheme();
     } else {
-      localStorage.setItem("portfolio-theme-toggle-pos", JSON.stringify(mobilePos));
+      const pointer = dragStartRef.current;
+      const deltaX = pointer ? event.clientX - pointer.pointerX : 0;
+      const deltaY = pointer ? event.clientY - pointer.pointerY : 0;
+      const unsnapped = pointer
+        ? clampMobilePos(pointer.startX + deltaX, pointer.startY + deltaY)
+        : clampMobilePos(mobilePos.x, mobilePos.y);
+      const snapped = snapToHorizontalEdge(unsnapped.x, unsnapped.y);
+      setMobilePos(snapped);
+      localStorage.setItem("portfolio-theme-toggle-pos", JSON.stringify(snapped));
     }
 
     setTimeout(() => setDragging(false), 0);
@@ -155,7 +175,7 @@ export default function ThemeToggle() {
           }
         }}
         className="md:hidden fixed z-[9999] p-4 rounded-full bg-[var(--bg-primary)]/85 backdrop-blur-md text-[var(--text-primary)] border border-[var(--border-color)] shadow-[0_8px_20px_0_rgba(0,0,0,0.2)] dark:shadow-[0_8px_20px_0_rgba(255,255,255,0.08)] active:scale-95 touch-none"
-        style={{ left: `${mobilePos.x}px`, top: `${mobilePos.y}px` }}
+        style={{ left: `${mobilePos.x}px`, top: `${mobilePos.y}px`, transition: dragging ? "none" : "left 220ms ease, top 220ms ease" }}
         aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
         aria-pressed={theme === "light"}
         title="Drag to move. Tap to switch theme."

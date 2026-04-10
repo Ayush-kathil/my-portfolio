@@ -82,6 +82,25 @@ body {
   }
 }
 
+html.reduced-motion-lite .grain-overlay {
+  display: none;
+}
+
+html.reduced-motion-lite *,
+html.reduced-motion-lite *::before,
+html.reduced-motion-lite *::after {
+  animation-duration: 0.2s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.16s !important;
+  scroll-behavior: auto !important;
+}
+
+html.reduced-motion-lite .backdrop-blur-xl,
+html.reduced-motion-lite .backdrop-blur-2xl,
+html.reduced-motion-lite .backdrop-blur-md {
+  backdrop-filter: none !important;
+}
+
 h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.04em;
   line-height: 1.1;

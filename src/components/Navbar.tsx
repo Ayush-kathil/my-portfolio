@@ -1,9 +1,11 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Magnetic from "./Magnetic";
 
 export default function Navbar() {
+  const [activeMobileSection, setActiveMobileSection] = useState("gateway");
+
   const scrollTo = useCallback((id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -11,7 +13,55 @@ export default function Navbar() {
       const headerOffset = isMobile ? 72 : 96;
       const y = element.getBoundingClientRect().top + window.scrollY - headerOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
+      if (isMobile) {
+        setActiveMobileSection(id);
+      }
     }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const media = window.matchMedia("(max-width: 767px)");
+    if (!media.matches) {
+      return;
+    }
+
+    const sectionIds = ["gateway", "projects", "contact"];
+    const updateActiveSection = () => {
+      let nextActive = sectionIds[0];
+      let minDistance = Number.POSITIVE_INFINITY;
+      const viewportHeight = window.innerHeight;
+      const anchorY = Math.max(84, Math.min(148, viewportHeight * 0.22));
+
+      sectionIds.forEach((id) => {
+        const section = document.getElementById(id);
+        if (!section) {
+          return;
+        }
+
+        const rect = section.getBoundingClientRect();
+        const distance = Math.abs(rect.top - anchorY);
+
+        if (rect.bottom > 56 && rect.top < viewportHeight - 56 && distance < minDistance) {
+          minDistance = distance;
+          nextActive = id;
+        }
+      });
+
+      setActiveMobileSection(nextActive);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
   }, []);
 
   return (
@@ -56,7 +106,8 @@ export default function Navbar() {
                   event.preventDefault();
                   scrollTo(item.id);
                 }}
-                className="block w-full text-center rounded-xl px-2 py-2.5 text-[11px] uppercase tracking-widest font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-primary)] transition-colors"
+                className={`block w-full text-center rounded-xl px-2 py-2.5 text-[11px] uppercase tracking-widest font-medium transition-colors ${activeMobileSection === item.id ? "text-[var(--text-primary)] bg-[var(--bg-primary)] border border-[var(--border-color)]" : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-primary)]"}`}
+                aria-current={activeMobileSection === item.id ? "page" : undefined}
               >
                 {item.name}
               </a>

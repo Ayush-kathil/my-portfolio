@@ -36,6 +36,16 @@ export default function RootLayout({
                 } else {
                   document.documentElement.classList.add('dark');
                 }
+
+                var ua = navigator.userAgent || '';
+                var isAndroid = /Android/i.test(ua);
+                var cores = navigator.hardwareConcurrency || 8;
+                var memory = navigator.deviceMemory || 8;
+                var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+                var slowNetwork = !!(connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g' || connection.effectiveType === '3g'));
+                var lowEndAndroid = isAndroid && (cores <= 6 || memory <= 4 || slowNetwork);
+
+                document.documentElement.classList.toggle('reduced-motion-lite', lowEndAndroid);
               } catch (_) {}
             `,
           }}

@@ -5,8 +5,13 @@ import { useMemo } from "react";
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const options = useMemo(() => {
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return { smoothWheel: false, duration: 0 };
+    if (typeof window !== "undefined") {
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const reducedMotionLite = document.documentElement.classList.contains("reduced-motion-lite");
+
+      if (prefersReducedMotion || reducedMotionLite) {
+        return { smoothWheel: false, smoothTouch: false, duration: 0 };
+      }
     }
 
     return {
