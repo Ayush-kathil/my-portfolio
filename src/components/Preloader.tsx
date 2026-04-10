@@ -1,31 +1,20 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 export default function Preloader({ onComplete }: { onComplete: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const counterRef = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState(0);
+  const textRef1 = useRef<HTMLDivElement>(null);
+  const textRef2 = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Lock scroll during preloader
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      onComplete();
+      return;
+    }
+
     document.body.style.overflow = "hidden";
-    
-    // Simulate loading progress
-    const duration = 2.5; // Seconds
-    const interval = 20; // ms
-    const increments = 100 / (duration * 1000 / interval);
-    
-    let currentProgress = 0;
-    const progressInterval = setInterval(() => {
-      currentProgress += increments;
-      if (currentProgress >= 100) {
-        currentProgress = 100;
-        clearInterval(progressInterval);
-      }
-      setProgress(Math.floor(currentProgress));
-    }, interval);
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -35,24 +24,27 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
         }
       });
 
-      // Wait for progress to hit 100 roughly
-      tl.to({}, { duration: 2.8 })
-        .to(counterRef.current, {
-          yPercent: -100,
+      tl.fromTo([textRef1.current, textRef2.current], 
+          { yPercent: 120, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 0.7, stagger: 0.12, ease: "power4.out" }
+        )
+        .to([textRef1.current, textRef2.current], {
+          yPercent: -120,
           opacity: 0,
-          duration: 0.8,
-          ease: "power3.inOut"
+          duration: 0.5,
+          stagger: 0.1,
+          ease: "power3.inOut",
+          delay: 0.3
         })
         .to(containerRef.current, {
           yPercent: -100,
-          duration: 1.2,
+          duration: 0.65,
           ease: "power4.inOut"
-        }, "-=0.4");
+        }, "-=0.3");
         
     }, containerRef);
 
     return () => {
-      clearInterval(progressInterval);
       ctx.revert();
       document.body.style.overflow = "auto";
     };
@@ -61,11 +53,14 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
   return (
     <div 
       ref={containerRef} 
-      className="fixed inset-0 z-[99999] bg-[var(--bg-primary)] text-[var(--text-primary)] flex justify-end items-end p-8 sm:p-12 md:p-24"
+      className="fixed inset-0 z-[99999] bg-[var(--text-primary)] flex flex-col justify-center items-center p-8 sm:p-12 md:p-24"
     >
-      <div className="overflow-hidden">
-        <div ref={counterRef} className="text-[15vw] md:text-[8vw] font-medium leading-none tracking-tighter">
-          {progress}%
+      <div className="overflow-hidden flex gap-4 md:gap-8 text-[var(--bg-primary)]">
+        <div ref={textRef1} className="text-4xl md:text-7xl lg:text-9xl font-semibold tracking-tighter uppercase will-change-transform pb-2">
+          AYUSH
+        </div>
+        <div ref={textRef2} className="text-4xl md:text-7xl lg:text-9xl font-semibold tracking-tighter uppercase will-change-transform pb-2 opacity-50">
+          GUPTA
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ export default function Footer() {
         <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-center md:text-left">
             <h2 className="text-[50px] md:text-[72px] font-medium tracking-[-2px] md:tracking-[-4.32px] leading-none uppercase mb-2">Ayush Gupta</h2>
-            <p className="text-[var(--text-secondary)] font-mono">Creative Developer & AI Student</p>
+            <p className="text-[var(--text-secondary)] font-mono">Software Engineer &middot; ML Systems</p>
           </div>
           
           <div className="flex gap-8 text-[var(--text-secondary)] font-mono uppercase tracking-widest text-sm">

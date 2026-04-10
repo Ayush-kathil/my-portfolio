@@ -11,8 +11,8 @@ const interFont = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Ayush Gupta | Creative Developer & AI Student",
-  description: "Portfolio of Ayush Gupta - B.Tech CSE (AIML) Student intersecting AI with robust software engineering.",
+  title: "Ayush Gupta | Software Engineer & ML Systems",
+  description: "Portfolio of Ayush Gupta - B.Tech CSE (AI/ML) at VIT Bhopal. Building client-side processing tools and ML inference pipelines.",
   icons: {
     icon: "/logo.png",
   },
@@ -26,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta name="color-scheme" content="light dark" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -43,7 +44,13 @@ export default function RootLayout({
       <body
         className={`${interFont.variable} font-sans antialiased`}
       >
-        <div className="grain-overlay"></div>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100000] focus:rounded-md focus:bg-[var(--bg-primary)] focus:px-4 focus:py-2 focus:text-[var(--text-primary)] focus:shadow-lg"
+        >
+          Skip to content
+        </a>
+        <div className="grain-overlay" aria-hidden="true"></div>
         <SmoothScroll>
           <Navbar />
           {children}

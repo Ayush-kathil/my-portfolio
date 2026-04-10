@@ -1,75 +1,69 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { Github, Star, GitFork, ArrowUpRight, Code } from "lucide-react";
+import { useRef, useEffect } from "react";
+import { Github, ArrowUpRight, Code } from "lucide-react";
 import TextReveal from "@/components/TextReveal";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface Repo {
-  id: number;
-  name: string;
-  description: string;
-  html_url: string;
-  stargazers_count: number;
-  forks_count: number;
-  language: string;
-  updated_at: string;
-}
-
-type TabType = 'Top Stars' | 'Recent' | 'Most Forked';
+const GITHUB_CONTRIBUTIONS = [
+  {
+    id: 1,
+    name: "Pdf-editx",
+    description: "Client-side PDF processing: compression, password removal, image optimization. Zero server upload.",
+    html_url: "https://github.com/Ayush-kathil/Pdf-editx",
+    language: "JavaScript",
+    reason: "Built to eliminate the need for uploading sensitive documents to external servers. Learned client-side binary manipulation and Web Worker-based processing."
+  },
+  {
+    id: 2,
+    name: "Cyberia: Fake Banking APK Detection",
+    description: "Multi-modal ML pipeline combining APK static analysis with steganography detection. 96.8% accuracy.",
+    html_url: "https://github.com/Ayush-kathil/Cyberia---Detecting-Fake-Banking-APKs",
+    language: "Python",
+    reason: "Built to address credential theft via fake banking apps. Combined reverse engineering, computer vision, and ensemble classifiers into a single detection pipeline."
+  },
+  {
+    id: 3,
+    name: "Credit-Card-Fraud-Detection",
+    description: "ML pipeline with SMOTE resampling on 284,807 transactions. Precision-recall optimization for 0.17% fraud rate.",
+    html_url: "https://github.com/Ayush-kathil/Credit-Card-Fraud-Detection",
+    language: "Jupyter Notebook",
+    reason: "Built to understand why 99.9% accuracy can mean a useless model. The real challenge: maximizing recall without flooding users with false positives."
+  },
+  {
+    id: 4,
+    name: "Yoga-Pose-Detection",
+    description: "Real-time pose estimation at 30+ FPS on CPU using MediaPipe and OpenCV.",
+    html_url: "https://github.com/Ayush-kathil/yoga-pose-detection",
+    language: "Python",
+    reason: "Built to democratize safe fitness practice. The constraint: maintain 30+ FPS doing full pose estimation on standard laptop CPU hardware, no GPU."
+  },
+  {
+    id: 5,
+    name: "Hotel-Sunrise",
+    description: "Fully responsive hotel booking frontend. Vanilla HTML/CSS/JS, zero frameworks, deployed on Netlify.",
+    html_url: "https://github.com/Ayush-kathil/Hotel-Sunrise",
+    language: "TypeScript",
+    reason: "Built to prove foundational web skills. Pixel-perfect responsive layout using raw CSS Grid and Flexbox, no utility frameworks."
+  },
+  {
+    id: 6,
+    name: "Movie-Recommendation-System",
+    description: "Content-based engine using cosine similarity on vectorized metadata for 5,000+ movies.",
+    html_url: "https://github.com/Ayush-kathil/Movie-Recommendation-System",
+    language: "Jupyter Notebook",
+    reason: "Built to understand sparse matrix operations, NLP text vectorization, and pairwise distance computation at scale."
+  }
+];
 
 export default function GitHubProjects() {
-  const [allRepos, setAllRepos] = useState<Repo[]>([]);
-  const [displayRepos, setDisplayRepos] = useState<Repo[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<TabType>('Top Stars');
   const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    async function fetchRepos() {
-      try {
-        const res = await fetch("https://api.github.com/users/Ayush-kathil/repos?per_page=100");
-        if (res.ok) {
-          const data: Repo[] = await res.json();
-          // Filter out forks if you want, or just show all
-          setAllRepos(data);
-          sortAndSetRepos(data, 'Top Stars');
-        }
-      } catch (err) {
-        console.error("Failed to fetch Github repos", err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchRepos();
-  }, []);
-
-  const sortAndSetRepos = (repos: Repo[], tab: TabType) => {
-    const sorted = [...repos];
-    if (tab === 'Recent') {
-      sorted.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
-    } else if (tab === 'Top Stars') {
-      sorted.sort((a, b) => b.stargazers_count - a.stargazers_count);
-    } else if (tab === 'Most Forked') {
-      sorted.sort((a, b) => b.forks_count - a.forks_count);
-    }
-    // Show all repositories instead of slicing
-    setDisplayRepos(sorted);
-  };
-
-  const handleTabChange = (tab: TabType) => {
-    setActiveTab(tab);
-    sortAndSetRepos(allRepos, tab);
-  };
-
-  useEffect(() => {
-    if (loading) return;
-    
-    // Using a simple animation without pinning the entire section
     const ctx = gsap.context(() => {
       gsap.fromTo(
         gsap.utils.toArray(".github-card"),
@@ -78,7 +72,7 @@ export default function GitHubProjects() {
           opacity: 1,
           y: 0,
           duration: 0.8,
-          stagger: 0.1,
+          stagger: 0.15,
           ease: "power3.out",
           scrollTrigger: {
             trigger: containerRef.current,
@@ -88,7 +82,7 @@ export default function GitHubProjects() {
       );
     }, sectionRef);
     return () => ctx.revert();
-  }, [loading, displayRepos]);
+  }, []);
 
   return (
     <div 
@@ -100,7 +94,7 @@ export default function GitHubProjects() {
         <div className="max-w-7xl mx-auto w-full">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-16 border-b border-[var(--border-color)] pb-8 gap-8">
             <h2 className="text-[50px] md:text-[72px] font-medium tracking-[-2px] md:tracking-[-4.32px] leading-none uppercase flex items-center gap-6">
-              <Github className="w-12 h-12 md:w-20 md:h-20" /> <TextReveal>GitHub Open Source</TextReveal>
+              <Github className="w-12 h-12 md:w-20 md:h-20" /> <TextReveal>All Repositories</TextReveal>
             </h2>
             <a
               href="https://github.com/Ayush-kathil"
@@ -113,65 +107,47 @@ export default function GitHubProjects() {
             </a>
           </div>
 
-          <div className="flex gap-4 mb-12 overflow-x-auto pb-4 hide-scrollbar w-full">
-            {(['Top Stars', 'Recent', 'Most Forked'] as TabType[]).map(tab => (
-              <button
-                key={tab}
-                onClick={() => handleTabChange(tab)}
-                suppressHydrationWarning
-                className={`px-8 py-4 rounded-full font-mono uppercase tracking-widest text-sm transition-all whitespace-nowrap ${
-                  activeTab === tab 
-                  ? 'bg-[var(--text-primary)] text-[var(--bg-primary)] border border-[var(--text-primary)]' 
-                  : 'border border-[var(--border-color)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-primary)]'
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
+          <div className="mb-12">
+            <p className="text-lg md:text-xl font-light text-[var(--text-secondary)] max-w-3xl">
+              A curated set of repositories that show how I think, build, and iterate in real projects.
+            </p>
           </div>
 
-          {loading ? (
-            <div className="flex justify-center items-center py-32 font-mono text-2xl animate-pulse text-[var(--text-secondary)]">
-              Fetching Repositories...
-            </div>
-          ) : (
-            <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-              {displayRepos.map((repo) => (
-                <a
-                  key={repo.id}
-                  href={repo.html_url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="github-card group flex flex-col h-full p-8 border border-[var(--border-color)] rounded-3xl hover:bg-[var(--bg-secondary)] hover:border-[var(--text-primary)] transition-all duration-500 relative"
-                >
-                  <div className="flex justify-between items-start mb-6">
-                    <div className="p-3 rounded-full bg-[var(--bg-secondary)] group-hover:bg-[var(--text-primary)] group-hover:text-[var(--bg-primary)] transition-colors duration-300">
-                      <Code className="w-6 h-6" />
-                    </div>
-                    <ArrowUpRight className="w-6 h-6 text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] group-hover:rotate-45 transition-transform duration-300" />
+          <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+            {GITHUB_CONTRIBUTIONS.map((repo) => (
+              <a
+                key={repo.id}
+                href={repo.html_url}
+                target="_blank"
+                rel="noreferrer"
+                className="github-card group flex flex-col h-full p-8 border-[0.5px] border-[var(--border-color)] rounded-3xl hover:bg-[var(--bg-secondary)] hover:border-[var(--text-primary)] transition-all duration-500 relative"
+              >
+                <div className="flex justify-between items-start mb-6">
+                  <div className="p-3 rounded-full bg-[var(--bg-secondary)] group-hover:bg-[var(--text-primary)] group-hover:text-[var(--bg-primary)] transition-colors duration-300">
+                    <Code className="w-6 h-6" />
                   </div>
-                  
-                  <h3 className="text-2xl md:text-3xl font-semibold mb-4 text-[var(--text-primary)] line-clamp-2">
-                    {repo.name} 
-                  </h3>
-                  
-                  <p className="text-lg font-light text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors mb-8 flex-grow">
-                    {repo.description || "No description provided."}
+                  <ArrowUpRight className="w-6 h-6 text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] group-hover:rotate-45 transition-transform duration-300" />
+                </div>
+                
+                <h3 className="text-2xl font-semibold mb-4 text-[var(--text-primary)]">
+                  {repo.name} 
+                </h3>
+                
+                <p className="text-md font-light text-[var(--text-secondary)] mb-6">
+                  {repo.description}
+                </p>
+
+                <div className="mt-auto pt-6 border-t border-[var(--border-color)] group-hover:border-[var(--text-primary)] transition-colors duration-300">
+                  <p className="text-sm leading-relaxed text-[var(--text-primary)] opacity-90 italic">
+                    {repo.reason}
                   </p>
-                  
-                  <div className="flex items-center gap-6 justify-between text-[var(--text-secondary)] font-mono text-xs md:text-sm uppercase tracking-widest mt-auto border-t border-[var(--border-color)] pt-6 group-hover:border-[var(--text-primary)] transition-colors duration-300">
-                    <span className="group-hover:text-[var(--text-primary)] transition-colors truncate max-w-[50%]">
-                      {repo.language || "N/A"}
-                    </span>
-                    <div className="flex items-center gap-4 shrink-0">
-                      <span className="flex items-center gap-1 group-hover:text-[var(--text-primary)] transition-colors"><Star className="w-4 h-4" /> {repo.stargazers_count}</span>
-                      <span className="flex items-center gap-1 group-hover:text-[var(--text-primary)] transition-colors"><GitFork className="w-4 h-4" /> {repo.forks_count}</span>
-                    </div>
+                  <div className="mt-6 flex items-center justify-between font-mono text-xs uppercase tracking-widest text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors">
+                    <span>{repo.language}</span>
                   </div>
-                </a>
-              ))}
-            </div>
-          )}
+                </div>
+              </a>
+            ))}
+          </div>
           
           <div className="mt-16 flex justify-center md:hidden">
             <a

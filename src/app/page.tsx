@@ -1,29 +1,49 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState, useSyncExternalStore } from "react";
+import dynamic from "next/dynamic";
 import Hero from "@/components/Hero";
-import ImpactMetrics from "@/components/ImpactMetrics";
-import About from "@/components/About";
-import Experience from "@/components/Experience";
-import FeaturedProjects from "@/components/FeaturedProjects";
-import GitHubProjects from "@/components/GitHubProjects";
-import Certifications from "@/components/Certifications";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-import ScrollThemeController from "@/components/ScrollThemeController";
 import Preloader from "@/components/Preloader";
 
+const ImpactMetrics = dynamic(() => import("@/components/ImpactMetrics"));
+const About = dynamic(() => import("@/components/About"));
+const Experience = dynamic(() => import("@/components/Experience"));
+const FeaturedProjects = dynamic(() => import("@/components/FeaturedProjects"));
+const GitHubProjects = dynamic(() => import("@/components/GitHubProjects"));
+const Contact = dynamic(() => import("@/components/Contact"));
+const Footer = dynamic(() => import("@/components/Footer"));
+
+const subscribeToThemeStore = () => () => {};
+
+const getPreloaderSnapshot = () => {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  return window.sessionStorage.getItem("portfolio-preloader-seen") === "1";
+};
+
 export default function Home() {
-  const [preloaderComplete, setPreloaderComplete] = useState(false);
+  const [preloaderDismissed, setPreloaderDismissed] = useState(false);
+  const preloaderSeen = useSyncExternalStore(
+    subscribeToThemeStore,
+    getPreloaderSnapshot,
+    () => false,
+  );
+  const preloaderComplete = preloaderSeen || preloaderDismissed;
+
+  const handlePreloaderComplete = useCallback(() => {
+    setPreloaderDismissed(true);
+    window.sessionStorage.setItem("portfolio-preloader-seen", "1");
+  }, []);
 
   return (
-    <main className="w-full bg-[var(--bg-primary)] text-[var(--text-primary)] min-h-screen relative">
+    <main id="main-content" className="w-full bg-[var(--bg-primary)] text-[var(--text-primary)] min-h-screen relative">
       {!preloaderComplete && (
-        <Preloader onComplete={() => setPreloaderComplete(true)} />
+        <Preloader onComplete={handlePreloaderComplete} />
       )}
       
       <div className="sticky top-0 w-full h-[100svh] z-0 overflow-hidden">
-        <ScrollThemeController />
         <Hero preloaderComplete={preloaderComplete} />
       </div>
 
@@ -33,7 +53,6 @@ export default function Home() {
         <Experience />
         <FeaturedProjects />
         <GitHubProjects />
-        <Certifications />
         <Contact />
         <Footer />
       </div>

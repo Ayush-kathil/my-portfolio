@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FileText, Linkedin, Github, MoveRight } from "lucide-react";
-import Typewriter from "./Typewriter";
+import TextReveal from "./TextReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,7 +33,7 @@ export default function Hero({ preloaderComplete = true }: { preloaderComplete?:
       tl.fromTo(
         [title1Ref.current, title2Ref.current],
         { yPercent: 120, rotate: 2, filter: "blur(12px)", opacity: 0 },
-        { yPercent: 0, rotate: 0, filter: "blur(0px)", opacity: 1, duration: 1.8, stagger: 0.15 },
+        { yPercent: 0, rotate: 0, filter: "blur(0px)", opacity: 1, duration: 1.25, stagger: 0.1 },
         "-=1.5"
       );
 
@@ -41,7 +41,7 @@ export default function Hero({ preloaderComplete = true }: { preloaderComplete?:
       tl.fromTo(
         subtitleRef.current,
         { opacity: 0, y: 30, filter: "blur(5px)" },
-        { opacity: 1, y: 0, filter: "blur(0px)", duration: 1.2 },
+        { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.9 },
         "-=1.4"
       );
 
@@ -49,13 +49,13 @@ export default function Hero({ preloaderComplete = true }: { preloaderComplete?:
       tl.fromTo(
         buttonsRef.current,
         { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 1 },
+        { opacity: 1, y: 0, duration: 0.8 },
         "-=1"
       );
 
       // Premium Parallax Effect
       gsap.to(containerRef.current, {
-        yPercent: 15, // Move slightly down to create depth when scrolling
+        yPercent: 15,
         ease: "none",
         scrollTrigger: {
           trigger: containerRef.current,
@@ -97,24 +97,24 @@ export default function Hero({ preloaderComplete = true }: { preloaderComplete?:
           </h1>
           
           <div ref={subtitleRef} className="max-w-2xl pl-3 border-l-2 md:border-l-4 border-[var(--text-primary)] text-left mb-8 xl:mb-0">
-             <Typewriter 
-               text="Software engineer and student, passionate about building robust applications, exploring machine learning, and creating seamless software experiences."
-               delay={0.01}
-               className="text-base sm:text-lg md:text-2xl lg:text-3xl font-light leading-snug text-[var(--text-primary)] text-left"
-             />
+             <div className="text-base sm:text-lg md:text-2xl lg:text-3xl font-light leading-snug text-[var(--text-primary)] text-left">
+               <TextReveal delay={1.4}>
+                 I build practical software at the intersection of web and machine learning, with a focus on speed, reliability, and real user value.
+               </TextReveal>
+             </div>
           </div>
         </div>
         
         <div ref={buttonsRef} className="w-full xl:w-1/3 flex flex-col gap-4 max-w-sm">
-          <a href="/resume.pdf" target="_blank" rel="noreferrer" className="group flex items-center justify-between gap-8 px-8 py-5 border-[1.5px] border-[var(--border-color)] bg-[var(--bg-primary)]/50 backdrop-blur-md rounded-full hover:border-[var(--text-primary)] hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-all duration-500 font-mono uppercase tracking-widest text-sm md:text-base cursor-pointer">
+          <a href="/resume.pdf" target="_blank" rel="noreferrer" className="group flex items-center justify-between gap-8 px-8 py-5 border-[1.5px] border-[var(--border-color)] bg-[var(--bg-primary)]/50 backdrop-blur-md rounded-full shadow-sm hover:shadow-md hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-[var(--bg-primary)] transition-all duration-300 font-medium tracking-wide text-sm md:text-base cursor-pointer">
             <span className="flex items-center gap-3"><FileText size={18} /> Resume</span>
             <MoveRight className="group-hover:translate-x-2 transition-transform duration-300" size={18} />
           </a>
           <div className="flex gap-4">
-            <a href="https://linkedin.com/in/Ayush-kathil" target="_blank" rel="noreferrer" className="flex-1 flex justify-center items-center py-5 border-[1.5px] border-[var(--border-color)] bg-[var(--bg-primary)]/50 backdrop-blur-md rounded-full hover:border-[var(--text-primary)] hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-all duration-500">
+            <a aria-label="Open LinkedIn profile" href="https://linkedin.com/in/Ayush-kathil" target="_blank" rel="noreferrer" className="flex-1 flex justify-center items-center py-5 border-[1.5px] border-[var(--border-color)] bg-[var(--bg-primary)]/50 backdrop-blur-md rounded-full shadow-sm hover:shadow-md hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-[var(--bg-primary)] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]">
               <Linkedin size={22} />
             </a>
-            <a href="https://github.com/Ayush-kathil" target="_blank" rel="noreferrer" className="flex-1 flex justify-center items-center py-5 border-[1.5px] border-[var(--border-color)] bg-[var(--bg-primary)]/50 backdrop-blur-md rounded-full hover:border-[var(--text-primary)] hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-all duration-500">
+            <a aria-label="Open GitHub profile" href="https://github.com/Ayush-kathil" target="_blank" rel="noreferrer" className="flex-1 flex justify-center items-center py-5 border-[1.5px] border-[var(--border-color)] bg-[var(--bg-primary)]/50 backdrop-blur-md rounded-full shadow-sm hover:shadow-md hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-[var(--bg-primary)] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]">
               <Github size={22} />
             </a>
           </div>

@@ -19,14 +19,25 @@ export default async function ProjectPage({
   }
 
   // Define variants for the scroll animations
-  const fadeUpVariant: any = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  const fadeUpVariant = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } }
   };
 
-  const imageVariant: any = {
-    hidden: { opacity: 0, scale: 0.95, y: 50 },
-    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 1, ease: "easeOut" } }
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.1,
+      }
+    }
+  };
+
+  const imageVariant = {
+    hidden: { opacity: 0, scale: 0.95, y: 80 },
+    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } }
   };
 
   return (
@@ -62,33 +73,83 @@ export default async function ProjectPage({
           initial="hidden" 
           whileInView="visible" 
           viewport={{ once: true, margin: "-100px" }}
-          variants={fadeUpVariant}
+          variants={staggerContainer}
           className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24"
         >
-          <div>
-            <h2 className="text-2xl font-mono text-neutral-500 uppercase tracking-widest mb-6 border-b border-neutral-800 pb-4">
-              About the Project
-            </h2>
-            <p className="text-xl md:text-2xl text-neutral-300 font-light leading-relaxed">
-              {project.about}
-            </p>
-          </div>
+            <div className="space-y-16">
+              <section>
+                <motion.h2 variants={fadeUpVariant} className="text-2xl font-mono text-[var(--text-secondary)] uppercase tracking-widest mb-6 border-b border-[var(--border-color)] pb-4">
+                  About the Project
+                </motion.h2>
+                <motion.p variants={fadeUpVariant} className="text-xl md:text-2xl text-[var(--text-primary)] opacity-80 font-light leading-relaxed">
+                  {project.about}
+                </motion.p>
+              </section>
+
+              {project.problemStatement && (
+                <section>
+                  <motion.h2 variants={fadeUpVariant} className="text-2xl font-mono text-[var(--text-secondary)] uppercase tracking-widest mb-6 border-b border-[var(--border-color)] pb-4">
+                    The Problem
+                  </motion.h2>
+                  <motion.p variants={fadeUpVariant} className="text-xl md:text-2xl text-[var(--text-primary)] opacity-80 font-light leading-relaxed">
+                    {project.problemStatement}
+                  </motion.p>
+                </section>
+              )}
+
+              {project.architecture && (
+                <section>
+                  <motion.h2 variants={fadeUpVariant} className="text-2xl font-mono text-[var(--text-secondary)] uppercase tracking-widest mb-6 border-b border-[var(--border-color)] pb-4">
+                    Architecture & Approach
+                  </motion.h2>
+                  <motion.p variants={fadeUpVariant} className="text-xl md:text-2xl text-[var(--text-primary)] opacity-80 font-light leading-relaxed">
+                    {project.architecture}
+                  </motion.p>
+                </section>
+              )}
+
+              {project.challenges && (
+                <section>
+                  <motion.h2 variants={fadeUpVariant} className="text-2xl font-mono text-[var(--text-secondary)] uppercase tracking-widest mb-6 border-b border-[var(--border-color)] pb-4">
+                    Key Challenges
+                  </motion.h2>
+                  <motion.p variants={fadeUpVariant} className="text-xl md:text-2xl text-[var(--text-primary)] opacity-80 font-light leading-relaxed">
+                    {project.challenges}
+                  </motion.p>
+                </section>
+              )}
+
+              {project.impact && (
+                <section>
+                  <motion.h2 variants={fadeUpVariant} className="text-2xl font-mono text-[var(--text-secondary)] uppercase tracking-widest mb-6 border-b border-[var(--border-color)] pb-4">
+                    Impact
+                  </motion.h2>
+                  <motion.p variants={fadeUpVariant} className="text-xl md:text-2xl text-[var(--text-primary)] opacity-80 font-light leading-relaxed">
+                    {project.impact}
+                  </motion.p>
+                </section>
+              )}
+            </div>
           
           <div className="flex flex-col gap-6 justify-center lg:items-end">
             {project.githubUrl && project.githubUrl !== "#" && (
-              <Magnetic>
-                <a href={project.githubUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-4 w-full md:w-auto px-12 py-6 bg-[var(--text-primary)] text-[var(--bg-primary)] font-bold uppercase tracking-widest text-lg hover:opacity-80 transition-all">
-                  <Github className="w-6 h-6" /> Source Code
-                </a>
-              </Magnetic>
+              <motion.div variants={fadeUpVariant} className="w-full md:w-auto">
+                <Magnetic>
+                  <a href={project.githubUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-4 w-full md:w-auto px-12 py-6 bg-[var(--text-primary)] text-[var(--bg-primary)] font-bold uppercase tracking-widest text-lg hover:opacity-80 transition-all">
+                    <Github className="w-6 h-6" /> Source Code
+                  </a>
+                </Magnetic>
+              </motion.div>
             )}
             
             {project.liveUrl && project.liveUrl !== "#" && (
-              <Magnetic>
-                <a href={project.liveUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-4 w-full md:w-auto px-12 py-6 border border-[var(--text-primary)] text-[var(--text-primary)] font-bold uppercase tracking-widest text-lg hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-all">
-                  <ArrowUpRight className="w-6 h-6" /> Live Preview
-                </a>
-              </Magnetic>
+              <motion.div variants={fadeUpVariant} className="w-full md:w-auto">
+                <Magnetic>
+                  <a href={project.liveUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-4 w-full md:w-auto px-12 py-6 border border-[var(--text-primary)] text-[var(--text-primary)] font-bold uppercase tracking-widest text-lg hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-all">
+                    <ArrowUpRight className="w-6 h-6" /> Live Preview
+                  </a>
+                </Magnetic>
+              </motion.div>
             )}
           </div>
         </motion.div>
@@ -106,8 +167,9 @@ export default async function ProjectPage({
                 src={project.image} 
                 alt={`${project.title} Preview`}
                 fill
+                sizes="(max-width: 768px) 100vw, 1200px"
                 className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
-                priority
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8 md:p-12">
                  <p className="text-white font-mono uppercase tracking-widest text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out shadow-black drop-shadow-md">

@@ -7,10 +7,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const metrics = [
-  { label: "LINES OF CODE", value: 120000, suffix: "+" },
-  { label: "MOVIES PROCESSED", value: 5000, suffix: "+" },
-  { label: "TEAM MEMBERS LED", value: 6, suffix: "" },
-  { label: "OPEN SOURCE COMMITS", value: 150, suffix: "+" },
+  { label: "INFERENCE FPS ON CPU", value: 30, suffix: "+" },
+  { label: "DATASET TRANSACTIONS", value: 284807, suffix: "" },
+  { label: "CLIENT DATA UPLOADED", value: 0, suffix: " bytes" },
+  { label: "PROJECTS DEPLOYED LIVE", value: 2, suffix: "" },
 ];
 
 export default function ImpactMetrics() {
@@ -51,7 +51,7 @@ export default function ImpactMetrics() {
             By The Numbers
           </h2>
           <p className="text-[var(--text-secondary)] font-mono text-sm md:text-base leading-relaxed">
-            Quantifiable impact across artificial intelligence, machine learning, and scalable software systems.
+            These are real outcomes from projects I have built, tested, and shipped.
           </p>
         </div>
 
