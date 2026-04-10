@@ -70,7 +70,7 @@ export default function Hero({ preloaderComplete = true }: { preloaderComplete?:
   }, [preloaderComplete]);
 
   return (
-    <section ref={containerRef} className="relative w-full min-h-[100svh] bg-[var(--bg-primary)] text-[var(--text-primary)] flex flex-col justify-center pt-32 pb-12 sm:pb-20 px-6 md:px-12 overflow-hidden">
+    <section ref={containerRef} className="relative w-full min-h-[100svh] bg-[var(--bg-primary)] text-[var(--text-primary)] flex flex-col justify-center pt-24 sm:pt-28 md:pt-32 pb-10 sm:pb-20 px-4 sm:px-6 md:px-12 overflow-hidden">
       
       {/* Plain Background Elements */}
       <div 
@@ -80,10 +80,10 @@ export default function Hero({ preloaderComplete = true }: { preloaderComplete?:
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808010_1px,transparent_1px),linear-gradient(to_bottom,#80808010_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_70%_50%_at_50%_50%,#000_60%,transparent_100%)]"></div>
       </div>
 
-      <div className="z-10 mt-auto w-full flex flex-col xl:flex-row xl:items-end justify-between gap-12 xl:gap-24 relative">
+      <div className="z-10 mt-auto w-full flex flex-col xl:flex-row xl:items-end justify-between gap-8 sm:gap-10 xl:gap-24 relative">
         
         <div className="w-full xl:w-2/3">
-          <h1 className="text-[18vw] sm:text-[14vw] xl:text-[11vw] leading-[0.9] font-semibold tracking-tighter mb-8 text-[var(--text-primary)]">
+          <h1 className="text-[clamp(3.2rem,18vw,7.5rem)] sm:text-[14vw] xl:text-[11vw] leading-[0.9] font-semibold tracking-tighter mb-6 sm:mb-8 text-[var(--text-primary)]">
             <div className="overflow-hidden pb-1 md:pb-2">
               <div ref={title1Ref} className="origin-bottom-left will-change-transform uppercase">
                 AYUSH
@@ -96,25 +96,25 @@ export default function Hero({ preloaderComplete = true }: { preloaderComplete?:
             </div>
           </h1>
           
-          <div ref={subtitleRef} className="max-w-2xl pl-3 border-l-2 md:border-l-4 border-[var(--text-primary)] text-left mb-8 xl:mb-0">
-             <div className="text-base sm:text-lg md:text-2xl lg:text-3xl font-light leading-snug text-[var(--text-primary)] text-left">
+          <div ref={subtitleRef} className="max-w-[36rem] w-full pl-3 sm:pl-4 border-l-2 md:border-l-4 border-[var(--text-primary)] text-left mb-6 sm:mb-8 xl:mb-0">
+             <div className="text-[clamp(1rem,4.5vw,1.8rem)] font-light leading-[1.45] text-[var(--text-primary)] text-left pr-1">
                <TextReveal delay={1.4}>
-                 I engineer production-ready AI products that turn complex ideas into fast, reliable experiences with measurable user impact.
+                  I build AI products end-to-end, from model logic to polished web experiences, with a bias for ownership, speed, and measurable outcomes.
                </TextReveal>
              </div>
           </div>
         </div>
         
-        <div ref={buttonsRef} className="w-full xl:w-1/3 flex flex-col gap-4 max-w-sm">
-          <a href="/resume.pdf" target="_blank" rel="noreferrer" className="group flex items-center justify-between gap-8 px-8 py-5 border-[1.5px] border-[var(--border-color)] bg-[var(--bg-primary)]/50 backdrop-blur-md rounded-full shadow-sm hover:shadow-md hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-[var(--bg-primary)] transition-all duration-300 font-medium tracking-wide text-sm md:text-base cursor-pointer">
+        <div ref={buttonsRef} className="w-full xl:w-1/3 flex flex-col gap-3 sm:gap-4 max-w-none sm:max-w-sm">
+          <a href="/resume.pdf" target="_blank" rel="noreferrer" className="group flex items-center justify-between gap-6 px-6 sm:px-8 py-4 sm:py-5 border-[1.5px] border-[var(--border-color)] bg-[var(--bg-primary)]/50 backdrop-blur-md rounded-full shadow-sm hover:shadow-md hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-[var(--bg-primary)] transition-all duration-300 font-medium tracking-wide text-sm md:text-base cursor-pointer">
             <span className="flex items-center gap-3"><FileText size={18} /> Resume</span>
             <MoveRight className="group-hover:translate-x-2 transition-transform duration-300" size={18} />
           </a>
-          <div className="flex gap-4">
-            <a aria-label="Open LinkedIn profile" href="https://linkedin.com/in/Ayush-kathil" target="_blank" rel="noreferrer" className="flex-1 flex justify-center items-center py-5 border-[1.5px] border-[var(--border-color)] bg-[var(--bg-primary)]/50 backdrop-blur-md rounded-full shadow-sm hover:shadow-md hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-[var(--bg-primary)] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]">
+          <div className="flex gap-3 sm:gap-4">
+            <a aria-label="Open LinkedIn profile" href="https://linkedin.com/in/Ayush-kathil" target="_blank" rel="noreferrer" className="flex-1 flex justify-center items-center py-4 sm:py-5 border-[1.5px] border-[var(--border-color)] bg-[var(--bg-primary)]/50 backdrop-blur-md rounded-full shadow-sm hover:shadow-md hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-[var(--bg-primary)] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]">
               <Linkedin size={22} />
             </a>
-            <a aria-label="Open GitHub profile" href="https://github.com/Ayush-kathil" target="_blank" rel="noreferrer" className="flex-1 flex justify-center items-center py-5 border-[1.5px] border-[var(--border-color)] bg-[var(--bg-primary)]/50 backdrop-blur-md rounded-full shadow-sm hover:shadow-md hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-[var(--bg-primary)] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]">
+            <a aria-label="Open GitHub profile" href="https://github.com/Ayush-kathil" target="_blank" rel="noreferrer" className="flex-1 flex justify-center items-center py-4 sm:py-5 border-[1.5px] border-[var(--border-color)] bg-[var(--bg-primary)]/50 backdrop-blur-md rounded-full shadow-sm hover:shadow-md hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-[var(--bg-primary)] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]">
               <Github size={22} />
             </a>
           </div>

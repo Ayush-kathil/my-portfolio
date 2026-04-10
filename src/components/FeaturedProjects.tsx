@@ -58,10 +58,10 @@ export default function FeaturedProjects() {
 
   return (
     <CurvedSection className="bg-[var(--bg-secondary)] border-t-[4px] border-t-[var(--text-primary)]" id="projects">
-      <section ref={containerRef} className="w-full text-[var(--text-primary)] overflow-hidden relative z-20 bg-transparent py-24 md:py-0 md:h-screen">
+      <section ref={containerRef} className="w-full text-[var(--text-primary)] overflow-hidden relative z-20 bg-transparent py-20 sm:py-24 md:py-0 md:h-screen">
         
-        <div className="md:absolute md:top-24 md:top-32 left-6 md:left-12 z-20 mb-12 md:mb-0 px-6 md:px-0">
-          <h2 className="text-5xl sm:text-6xl md:text-[72px] font-medium tracking-tight md:tracking-[-4.32px] leading-none uppercase">
+        <div className="md:absolute md:top-32 left-4 sm:left-6 md:left-12 z-20 mb-10 sm:mb-12 md:mb-0 px-0 md:px-0">
+          <h2 className="text-[clamp(2.2rem,10vw,4.5rem)] font-medium tracking-tight md:tracking-[-4.32px] leading-none uppercase">
             <TextReveal>Featured Projects</TextReveal>
           </h2>
         </div>
@@ -96,16 +96,16 @@ export default function FeaturedProjects() {
         </div>
 
         {/* MOBILE VERTICAL STACK */}
-        <div className="flex flex-col gap-8 md:hidden px-6 w-full relative z-20">
+        <div className="flex flex-col gap-6 sm:gap-8 md:hidden px-4 sm:px-6 w-full relative z-20">
           {projectsData.map((proj, i) => (
-            <div key={`mob-${i}`} className="mobile-project w-full h-[420px] sm:h-[440px] flex flex-col p-6 sm:p-8 border border-[var(--border-color)] rounded-3xl bg-[var(--bg-secondary)]/60 backdrop-blur-xl relative shadow-md hover:shadow-xl hover:border-[var(--accent)] transition-all duration-300">
+            <div key={`mob-${i}`} className="mobile-project w-full min-h-[360px] sm:min-h-[400px] flex flex-col p-5 sm:p-7 border border-[var(--border-color)] rounded-3xl bg-[var(--bg-secondary)]/60 backdrop-blur-xl relative shadow-md hover:shadow-xl hover:border-[var(--accent)] transition-all duration-300">
               <div className="text-[var(--accent)] font-medium text-sm sm:text-base mb-4 tracking-wide">0{i + 1} / 0{projectsData.length}</div>
-              <Link href={`/project/${proj.slug}`} className="group/title block mb-6">
-                <h3 className="text-3xl sm:text-4xl font-semibold tracking-tight leading-[1.1] text-[var(--text-primary)] group-hover/title:text-[var(--accent)] transition-colors mb-2 flex items-center justify-between gap-4">
+              <Link href={`/project/${proj.slug}`} className="group/title block mb-4 sm:mb-6">
+                <h3 className="text-[clamp(1.65rem,8vw,2.25rem)] font-semibold tracking-tight leading-[1.12] text-[var(--text-primary)] group-hover/title:text-[var(--accent)] transition-colors mb-2 flex items-center justify-between gap-3 sm:gap-4">
                   {proj.title} <ArrowUpRight className="w-8 h-8 flex-shrink-0" />
                 </h3>
               </Link>
-              <p className="text-lg sm:text-xl font-light text-[var(--text-secondary)] mb-8 leading-relaxed flex-grow overflow-hidden">
+              <p className="text-[clamp(1rem,4.5vw,1.25rem)] font-light text-[var(--text-secondary)] mb-6 sm:mb-8 leading-relaxed flex-grow">
                 {proj.desc}
               </p>
               <div className="flex gap-2 flex-wrap mt-auto">
