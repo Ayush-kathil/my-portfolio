@@ -13,6 +13,9 @@ export default async function ProjectPage({
 }) {
   const resolvedParams = await params;
   const project = projectsData.find((p) => p.slug === resolvedParams.slug);
+  const isGithubOgPreview = Boolean(
+    project?.image?.startsWith("https://opengraph.githubassets.com/")
+  );
 
   if (!project) {
     notFound();
@@ -168,6 +171,7 @@ export default async function ProjectPage({
                 alt={`${project.title} Preview`}
                 fill
                 sizes="(max-width: 768px) 100vw, 1200px"
+                unoptimized={isGithubOgPreview}
                 className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
                 loading="lazy"
               />

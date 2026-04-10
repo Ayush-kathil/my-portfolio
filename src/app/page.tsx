@@ -4,6 +4,7 @@ import { useCallback, useState, useSyncExternalStore } from "react";
 import dynamic from "next/dynamic";
 import Hero from "@/components/Hero";
 import Preloader from "@/components/Preloader";
+import MobileGateway from "@/components/MobileGateway";
 
 const ImpactMetrics = dynamic(() => import("@/components/ImpactMetrics"));
 const About = dynamic(() => import("@/components/About"));
@@ -42,19 +43,25 @@ export default function Home() {
       {!preloaderComplete && (
         <Preloader onComplete={handlePreloaderComplete} />
       )}
-      
-      <div className="sticky top-0 w-full h-[100svh] z-0 overflow-hidden">
-        <Hero preloaderComplete={preloaderComplete} />
+
+      <div className="md:hidden relative z-10 w-full">
+        <MobileGateway preloaderComplete={preloaderComplete} />
       </div>
 
-      <div className="relative z-10 w-full">
-        <ImpactMetrics />
-        <About />
-        <Experience />
-        <FeaturedProjects />
-        <GitHubProjects />
-        <Contact />
-        <Footer />
+      <div className="hidden md:block">
+        <div className="sticky top-0 w-full h-[100svh] z-0 overflow-hidden">
+          <Hero preloaderComplete={preloaderComplete} />
+        </div>
+
+        <div className="relative z-10 w-full">
+          <ImpactMetrics />
+          <About />
+          <Experience />
+          <FeaturedProjects />
+          <GitHubProjects />
+          <Contact />
+          <Footer />
+        </div>
       </div>
     </main>
   );
