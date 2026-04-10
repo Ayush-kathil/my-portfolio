@@ -11,6 +11,14 @@ gsap.registerPlugin(ScrollTrigger);
 const GITHUB_CONTRIBUTIONS = [
   {
     id: 1,
+    name: "Hostel-Sunrise",
+    description: "Responsive hospitality website with booking-focused UX, room discovery, and clean navigation.",
+    html_url: "https://github.com/Ayush-kathil/Hotel-Sunrise",
+    language: "TypeScript",
+    reason: "Built to deliver a polished hospitality frontend with strong responsiveness and modern UI structure for production deployment."
+  },
+  {
+    id: 2,
     name: "Pdf-editx",
     description: "Client-side PDF processing: compression, password removal, image optimization. Zero server upload.",
     html_url: "https://github.com/Ayush-kathil/Pdf-editx",
@@ -18,44 +26,28 @@ const GITHUB_CONTRIBUTIONS = [
     reason: "Built to eliminate the need for uploading sensitive documents to external servers. Learned client-side binary manipulation and Web Worker-based processing."
   },
   {
-    id: 2,
-    name: "Cyberia: Fake Banking APK Detection",
-    description: "Multi-modal ML pipeline combining APK static analysis with steganography detection. 96.8% accuracy.",
-    html_url: "https://github.com/Ayush-kathil/Cyberia---Detecting-Fake-Banking-APKs",
-    language: "Python",
-    reason: "Built to address credential theft via fake banking apps. Combined reverse engineering, computer vision, and ensemble classifiers into a single detection pipeline."
-  },
-  {
     id: 3,
-    name: "Credit-Card-Fraud-Detection",
-    description: "ML pipeline with SMOTE resampling on 284,807 transactions. Precision-recall optimization for 0.17% fraud rate.",
-    html_url: "https://github.com/Ayush-kathil/Credit-Card-Fraud-Detection",
-    language: "Jupyter Notebook",
-    reason: "Built to understand why 99.9% accuracy can mean a useless model. The real challenge: maximizing recall without flooding users with false positives."
+    name: "HerWay",
+    description: "Real-time risk assessment API combining environmental and historical signals for proactive safety scoring.",
+    html_url: "https://github.com/Ayush-kathil/HerWay",
+    language: "Python",
+    reason: "Built in a hackathon setting to move from reactive safety workflows to proactive route-level risk awareness."
   },
   {
     id: 4,
-    name: "Yoga-Pose-Detection",
+    name: "Yoga-Pose-Detection-System",
     description: "Real-time pose estimation at 30+ FPS on CPU using MediaPipe and OpenCV.",
-    html_url: "https://github.com/Ayush-kathil/yoga-pose-detection",
+    html_url: "https://github.com/Ayush-kathil/YPDS-Yoga-Pose-Detection-System",
     language: "Python",
     reason: "Built to democratize safe fitness practice. The constraint: maintain 30+ FPS doing full pose estimation on standard laptop CPU hardware, no GPU."
   },
   {
     id: 5,
-    name: "Hotel-Sunrise",
-    description: "Fully responsive hotel booking frontend. Vanilla HTML/CSS/JS, zero frameworks, deployed on Netlify.",
-    html_url: "https://github.com/Ayush-kathil/Hotel-Sunrise",
-    language: "TypeScript",
-    reason: "Built to prove foundational web skills. Pixel-perfect responsive layout using raw CSS Grid and Flexbox, no utility frameworks."
-  },
-  {
-    id: 6,
-    name: "Movie-Recommendation-System",
-    description: "Content-based engine using cosine similarity on vectorized metadata for 5,000+ movies.",
-    html_url: "https://github.com/Ayush-kathil/Movie-Recommendation-System",
-    language: "Jupyter Notebook",
-    reason: "Built to understand sparse matrix operations, NLP text vectorization, and pairwise distance computation at scale."
+    name: "SFORA-Smart-File-Organizer",
+    description: "Rule-based desktop file automation to sort, classify, and organize files into clean folder hierarchies.",
+    html_url: "https://github.com/Ayush-kathil/SFORA-Smart-File-Organizer",
+    language: "Java",
+    reason: "Built to reduce repetitive manual file management through configurable rules and safer automated organization flows."
   }
 ];
 
