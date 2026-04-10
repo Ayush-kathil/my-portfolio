@@ -78,7 +78,7 @@ export default function About() {
               <div className="mt-8 grid grid-cols-2 gap-4">
                 <div className="rounded-2xl border border-[var(--border-color)] p-4">
                   <p className="text-xs uppercase tracking-widest text-[var(--text-secondary)]">Graduation</p>
-                  <p className="text-lg font-medium mt-1">2027</p>
+                  <p className="text-lg font-medium mt-1">2028</p>
                 </div>
                 <div className="rounded-2xl border border-[var(--border-color)] p-4">
                   <p className="text-xs uppercase tracking-widest text-[var(--text-secondary)]">Focus</p>
