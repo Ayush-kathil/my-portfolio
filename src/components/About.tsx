@@ -9,6 +9,25 @@ gsap.registerPlugin(ScrollTrigger);
 
 import TextReveal from "@/components/TextReveal";
 
+const strengths = [
+  {
+    title: "Computer Vision",
+    body: "Built real-time pose detection with MediaPipe + OpenCV and tuned it to run smoothly on CPU-only laptops.",
+  },
+  {
+    title: "ML Engineering",
+    body: "Worked on imbalanced fraud datasets and focused on practical thresholds, not just headline accuracy.",
+  },
+  {
+    title: "Privacy-First Web",
+    body: "Shipped browser-side PDF tooling where files never leave the device, so users keep full control of data.",
+  },
+  {
+    title: "Product Mindset",
+    body: "I like fast iterations, clear UX, and shipping small improvements consistently instead of chasing flashy complexity.",
+  },
+];
+
 export default function About() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
@@ -68,26 +87,17 @@ export default function About() {
               </div>
             </div>
             
-            <div ref={skillsRef} className="grid grid-cols-1 gap-4 md:gap-5">
-              <div className="skill-category rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)] p-5 md:p-6">
-                <h3 className="text-sm text-[var(--text-secondary)] uppercase font-mono mb-2 tracking-wider text-left">Computer Vision</h3>
-                <p className="text-base md:text-lg font-medium leading-relaxed text-left">Built real-time pose detection with MediaPipe + OpenCV and tuned it to run smoothly on CPU-only laptops.</p>
-              </div>
-              
-              <div className="skill-category rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)] p-5 md:p-6">
-                <h3 className="text-sm text-[var(--text-secondary)] uppercase font-mono mb-2 tracking-wider text-left">ML Engineering</h3>
-                <p className="text-base md:text-lg font-medium leading-relaxed text-left">Worked on imbalanced fraud datasets and focused on practical thresholds, not just headline accuracy.</p>
-              </div>
-
-              <div className="skill-category rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)] p-5 md:p-6">
-                <h3 className="text-sm text-[var(--text-secondary)] uppercase font-mono mb-2 tracking-wider text-left">Privacy-First Web</h3>
-                <p className="text-base md:text-lg font-medium leading-relaxed text-left">Shipped browser-side PDF tooling where files never leave the device, so users keep full control of data.</p>
-              </div>
-
-              <div className="skill-category rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)] p-5 md:p-6">
-                <h3 className="text-sm text-[var(--text-secondary)] uppercase font-mono mb-2 tracking-wider text-left">Product Mindset</h3>
-                <p className="text-base md:text-lg font-medium leading-relaxed text-left">I like fast iterations, clear UX, and shipping small improvements consistently instead of chasing flashy complexity.</p>
-              </div>
+            <div ref={skillsRef} className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+              {strengths.map((item) => (
+                <article key={item.title} className="skill-category rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)] p-5 md:p-6 min-h-[190px] flex flex-col">
+                  <span className="inline-flex w-fit rounded-full border border-[var(--border-color)] px-3 py-1 text-[11px] uppercase tracking-widest text-[var(--text-secondary)] mb-4">
+                    {item.title}
+                  </span>
+                  <p className="text-[17px] md:text-lg font-medium leading-relaxed text-left text-[var(--text-primary)]">
+                    {item.body}
+                  </p>
+                </article>
+              ))}
             </div>
           </div>
         </div>
