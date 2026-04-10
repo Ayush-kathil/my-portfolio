@@ -99,7 +99,7 @@ export default function Hero({ preloaderComplete = true }: { preloaderComplete?:
           <div ref={subtitleRef} className="max-w-2xl pl-3 border-l-2 md:border-l-4 border-[var(--text-primary)] text-left mb-8 xl:mb-0">
              <div className="text-base sm:text-lg md:text-2xl lg:text-3xl font-light leading-snug text-[var(--text-primary)] text-left">
                <TextReveal delay={1.4}>
-                 I build practical software at the intersection of web and machine learning, with a focus on speed, reliability, and real user value.
+                 I engineer production-ready AI products that turn complex ideas into fast, reliable experiences with measurable user impact.
                </TextReveal>
              </div>
           </div>
