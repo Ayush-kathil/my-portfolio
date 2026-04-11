@@ -13,19 +13,19 @@ const experiences = [
     title: "Open Source Contributor",
     organization: "DSC Winter of Code 2026",
     description:
-      "Contributed bug fixes and feature improvements across Python and JavaScript repositories, and worked closely with maintainers through review cycles.",
+      "Contributed bug fixes and feature improvements across Python and JavaScript repositories, collaborated with maintainers through review cycles, and improved issue turnaround reliability.",
   },
   {
     title: "Technical Lead",
     organization: "MATRIX Club, VIT Bhopal",
     description:
-      "Led a 6-member student team and designed hands-on sessions on Python data structures for juniors, from linked lists to graph traversal.",
+      "Led a 6-member team and designed hands-on Python data-structure sessions for juniors, translating complex topics into practical implementation workflows.",
   },
   {
     title: "Technical Team Member",
     organization: "TechnoMech Club, VIT Bhopal",
     description:
-      "Built internal tooling for events and helped with frontend delivery, deployment setup, and post-launch fixes.",
+      "Built internal event tooling and supported frontend delivery, deployment setup, and post-launch fixes to keep execution stable under deadlines.",
   },
 ];
 
@@ -63,6 +63,9 @@ export default function Experience() {
           <h2 className="text-5xl sm:text-6xl md:text-[72px] font-medium tracking-tight md:tracking-[-4.32px] leading-none uppercase">
             <TextReveal>Experience</TextReveal>
           </h2>
+          <p className="mt-4 mx-auto max-w-3xl text-[clamp(1rem,2.6vw,1.25rem)] text-[var(--text-secondary)] leading-relaxed">
+            Roles that demonstrate leadership, collaboration, and execution quality beyond coursework.
+          </p>
         </div>
         
         {/* PREMIUM STACK EFFECT */}

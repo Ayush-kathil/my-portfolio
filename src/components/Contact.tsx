@@ -72,7 +72,7 @@ export default function Contact() {
             <a href="mailto:kathilshiva@gmail.com" className="inline-flex items-center gap-2 rounded-full border border-[var(--border-color)] px-4 py-2 text-sm font-medium hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-colors">
               <Mail className="w-4 h-4" /> Email me
             </a>
-            <a href="https://linkedin.com/in/Ayush-kathil" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-[var(--border-color)] px-4 py-2 text-sm font-medium hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-colors">
+            <a href="https://www.linkedin.com/in/ayushkathil" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-[var(--border-color)] px-4 py-2 text-sm font-medium hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-colors">
               <Linkedin className="w-4 h-4" /> LinkedIn
             </a>
             <a href="https://github.com/Ayush-kathil" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-[var(--border-color)] px-4 py-2 text-sm font-medium hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-colors">

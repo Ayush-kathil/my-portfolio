@@ -42,20 +42,24 @@ export default function MobileGateway({ preloaderComplete = true }: MobileGatewa
         <motion.section id="gateway" variants={cardVariants} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} className="rounded-3xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/70 backdrop-blur-xl p-6 shadow-xl scroll-mt-24">
           <p className="text-[11px] uppercase tracking-[0.22em] text-[var(--text-secondary)] mb-4">Professional Gateway</p>
           <h1 className="text-[clamp(2rem,10vw,3.2rem)] font-semibold leading-[0.95] tracking-tight uppercase mb-4">
-            Ayush Gupta
+            Machine Learning Student & Software Engineer
           </h1>
           <p className="text-[clamp(1rem,4.6vw,1.2rem)] leading-relaxed text-[var(--text-secondary)]">
-            I build AI products end-to-end, from model logic to polished web experiences, with a bias for ownership, speed, and measurable outcomes.
+            I turn AI and full-stack ideas into recruiter-ready proof with clean interfaces, production-minded architecture, and measurable outcomes that work on real devices.
+          </p>
+
+          <p className="mt-3 text-[clamp(0.88rem,3.8vw,1rem)] leading-relaxed text-[var(--text-secondary)]">
+            Bachelor of Technology (AIML) @ VIT Bhopal | Seeking Summer 2026 Internships
           </p>
 
           <div className="grid grid-cols-3 gap-2 mt-6">
             <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)] p-3 text-center">
               <p className="text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">Role</p>
-              <p className="text-sm font-medium mt-1">AI + Web</p>
+              <p className="text-sm font-medium mt-1">Frontend</p>
             </div>
             <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)] p-3 text-center">
               <p className="text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">Focus</p>
-              <p className="text-sm font-medium mt-1">Impact</p>
+              <p className="text-sm font-medium mt-1">ML + Web</p>
             </div>
             <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)] p-3 text-center">
               <p className="text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">Grad</p>
@@ -147,7 +151,7 @@ export default function MobileGateway({ preloaderComplete = true }: MobileGatewa
                     </Link>
                   </div>
 
-                  <p className="text-sm leading-relaxed text-[var(--text-secondary)] line-clamp-3">{project.desc}</p>
+                  <p className="text-sm leading-relaxed text-[var(--text-secondary)] line-clamp-3">{project.summary ?? project.desc}</p>
                 </div>
               </motion.article>
             ))}
@@ -168,7 +172,7 @@ export default function MobileGateway({ preloaderComplete = true }: MobileGatewa
               <ArrowUpRight size={16} />
             </a>
             <a
-              href="https://linkedin.com/in/Ayush-kathil"
+              href="https://www.linkedin.com/in/ayushkathil"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center justify-between rounded-full border border-[var(--border-color)] px-5 py-3.5 bg-[var(--bg-primary)] hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-colors"

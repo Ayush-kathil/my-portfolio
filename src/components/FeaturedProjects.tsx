@@ -1,122 +1,97 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
 import { projectsData } from "@/data/projects";
 import Link from "next/link";
 import CurvedSection from "@/components/CurvedSection";
-import TextReveal from "@/components/TextReveal";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function FeaturedProjects() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const sliderRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
-
-      // Desktop: Horizontal Scroll Pin
-      mm.add("(min-width: 768px)", () => {
-        const panels = gsap.utils.toArray(".project-panel");
-
-        if(panels.length > 0) {
-          gsap.to(panels, {
-            xPercent: -100 * (panels.length - 1),
-            ease: "none",
-            scrollTrigger: {
-              trigger: containerRef.current,
-              pin: true,
-              scrub: 0.7,
-              end: () => `+=${panels.length * 100}%`,
-            }
-          });
-        }
-      });
-
-      // Mobile: Simple Fade Elements
-      mm.add("(max-width: 767px)", () => {
-        gsap.fromTo(".mobile-project", 
-          { y: 24, opacity: 0 },
-          { 
-            y: 0, opacity: 1, duration: 0.65, stagger: 0.1, ease: "power2.out",
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top 85%",
-            }
-          }
-        );
-      });
-
-    }, containerRef);
-    
-    return () => ctx.revert();
-  }, []);
-
   return (
     <CurvedSection className="bg-[var(--bg-secondary)] border-t-[4px] border-t-[var(--text-primary)]" id="projects">
-      <section ref={containerRef} className="w-full text-[var(--text-primary)] overflow-hidden relative z-20 bg-transparent py-20 sm:py-24 md:py-0 md:h-screen">
-        
-        <div className="md:absolute md:top-32 left-4 sm:left-6 md:left-12 z-20 mb-10 sm:mb-12 md:mb-0 px-0 md:px-0">
-          <h2 className="text-[clamp(2.2rem,10vw,4.5rem)] font-medium tracking-tight md:tracking-[-4.32px] leading-none uppercase">
-            <TextReveal>Featured Projects</TextReveal>
-          </h2>
-        </div>
+      <section className="w-full text-[var(--text-primary)] relative z-20 bg-transparent py-20 sm:py-24 md:py-28 px-4 sm:px-6 md:px-12">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-3xl mb-10 sm:mb-12 md:mb-16">
+            <p className="text-[11px] uppercase tracking-[0.24em] text-[var(--text-secondary)] mb-3">Selected case studies</p>
+            <h2 className="text-[clamp(2.3rem,9vw,4.8rem)] font-medium tracking-[-0.05em] leading-[0.95] uppercase">
+              Projects that show engineering judgment, not just polish.
+            </h2>
+            <p className="mt-4 text-[clamp(1rem,2.5vw,1.2rem)] text-[var(--text-secondary)] leading-relaxed">
+              Each project is structured for quick scanning: problem context, implementation approach, and measurable impact.
+            </p>
+          </div>
 
-        {/* DESKTOP HORIZONTAL SCROLL */}
-        <div ref={sliderRef} className="hidden md:flex h-full w-max items-center pt-32 md:pt-48 pb-12">
-          {projectsData.map((proj, i) => (
-            <div key={i} className="project-panel w-screen h-full flex flex-col justify-center px-6 md:px-16 lg:px-32">
-              <div className="max-w-5xl w-full h-[56vh] min-h-[460px] max-h-[560px] flex flex-col p-6 md:p-10 lg:p-12 border border-[var(--border-color)] shadow-md hover:shadow-2xl rounded-3xl bg-[var(--bg-secondary)]/60 backdrop-blur-2xl hover:border-[var(--accent)] hover:-translate-y-2 transition-all duration-500 group relative">
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[var(--accent)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-3xl"></div>
-                <div className="relative z-10 w-full h-full flex flex-col">
-                  <div className="text-[var(--accent)] font-medium text-xl md:text-2xl mb-6 md:mb-12">0{i + 1} / 0{projectsData.length}</div>
-                  <Link href={`/project/${proj.slug}`} className="inline-block group/title">
-                    <h3 className="text-[40px] md:text-[64px] font-semibold tracking-tight leading-none mb-6 md:mb-10 text-[var(--text-primary)] group-hover/title:text-[var(--accent)] transition-colors cursor-pointer flex items-center gap-4 md:gap-8">
-                      {proj.title} <ArrowUpRight className="w-10 h-10 md:w-16 md:h-16 flex-shrink-0 group-hover/title:rotate-45 group-hover/title:scale-110 transition-transform duration-300 ease-out" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 lg:gap-6">
+            {projectsData.map((proj, index) => (
+              <article
+                key={proj.slug}
+                className="group rounded-[2rem] border border-[var(--border-color)] bg-[var(--bg-primary)] p-5 sm:p-6 md:p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              >
+                <div className="flex items-start justify-between gap-4 mb-5">
+                  <div>
+                    <p className="text-[11px] uppercase tracking-[0.22em] text-[var(--text-secondary)] mb-2">
+                      0{index + 1}
+                    </p>
+                    <h3 className="text-[clamp(1.7rem,5vw,2.7rem)] font-semibold tracking-[-0.05em] leading-[1.02]">
+                      {proj.title}
                     </h3>
+                  </div>
+                  <Link
+                    href={`/project/${proj.slug}`}
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border-color)] transition-colors hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--text-primary)]"
+                    aria-label={`Open case study for ${proj.title}`}
+                  >
+                    <ArrowUpRight className="h-5 w-5" />
                   </Link>
-                  <p className="text-xl md:text-3xl font-light text-[var(--text-secondary)] mb-10 max-w-4xl leading-relaxed flex-grow">
-                    {proj.desc}
-                  </p>
-                  <div className="flex gap-3 md:gap-4 flex-wrap">
-                    {proj.tags.map((tag, tIndex) => (
-                      <span key={tIndex} className="px-5 py-2.5 rounded-full border border-[var(--border-color)] text-xs md:text-sm uppercase font-mono tracking-wider bg-[var(--bg-primary)]/50 group-hover:bg-transparent transition-colors">
-                        {tag}
-                      </span>
-                    ))}
+                </div>
+
+                <p className="max-w-2xl text-[clamp(0.98rem,2.7vw,1.1rem)] leading-relaxed text-[var(--text-secondary)]">
+                  {proj.summary}
+                </p>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                  <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)] p-4">
+                    <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--text-secondary)] mb-2">Problem</p>
+                    <p className="text-sm leading-relaxed text-[var(--text-primary)]">{proj.caseStudy.problem}</p>
+                  </div>
+                  <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)] p-4">
+                    <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--text-secondary)] mb-2">Solution</p>
+                    <p className="text-sm leading-relaxed text-[var(--text-primary)]">{proj.caseStudy.solution}</p>
+                  </div>
+                  <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)] p-4">
+                    <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--text-secondary)] mb-2">Impact</p>
+                    <p className="text-sm leading-relaxed text-[var(--text-primary)]">{proj.caseStudy.impact}</p>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
 
-        {/* MOBILE VERTICAL STACK */}
-        <div className="flex flex-col gap-6 sm:gap-8 md:hidden px-4 sm:px-6 w-full relative z-20">
-          {projectsData.map((proj, i) => (
-            <div key={`mob-${i}`} className="mobile-project w-full min-h-[360px] sm:min-h-[400px] flex flex-col p-5 sm:p-7 border border-[var(--border-color)] rounded-3xl bg-[var(--bg-secondary)]/60 backdrop-blur-xl relative shadow-md hover:shadow-xl hover:border-[var(--accent)] transition-all duration-300">
-              <div className="text-[var(--accent)] font-medium text-sm sm:text-base mb-4 tracking-wide">0{i + 1} / 0{projectsData.length}</div>
-              <Link href={`/project/${proj.slug}`} className="group/title block mb-4 sm:mb-6">
-                <h3 className="text-[clamp(1.65rem,8vw,2.25rem)] font-semibold tracking-tight leading-[1.12] text-[var(--text-primary)] group-hover/title:text-[var(--accent)] transition-colors mb-2 flex items-center justify-between gap-3 sm:gap-4">
-                  {proj.title} <ArrowUpRight className="w-8 h-8 flex-shrink-0" />
-                </h3>
-              </Link>
-              <p className="text-[clamp(1rem,4.5vw,1.25rem)] font-light text-[var(--text-secondary)] mb-6 sm:mb-8 leading-relaxed flex-grow">
-                {proj.desc}
-              </p>
-              <div className="flex gap-2 flex-wrap mt-auto">
-                {proj.tags.map((tag, tIndex) => (
-                  <span key={tIndex} className="px-3 py-1.5 rounded-full border border-[var(--border-color)] text-[10px] sm:text-xs uppercase font-mono tracking-wider bg-transparent">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {proj.tags.map((tag) => (
+                    <span key={tag} className="rounded-full border border-[var(--border-color)] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-[var(--text-secondary)]">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-6 flex flex-wrap items-center gap-3">
+                  <Link
+                    href={`/project/${proj.slug}`}
+                    className="inline-flex items-center gap-2 rounded-full bg-[var(--text-primary)] px-4 py-2.5 text-sm font-medium text-[var(--bg-primary)] transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--text-primary)]"
+                  >
+                    Read case study <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                  {proj.liveUrl !== "#" && (
+                    <a
+                      href={proj.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full border border-[var(--border-color)] px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] transition-colors hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--text-primary)]"
+                    >
+                      Live preview <ArrowUpRight className="h-4 w-4" />
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     </CurvedSection>

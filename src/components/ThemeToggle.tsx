@@ -1,23 +1,60 @@
 "use client";
 
-import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type PointerEvent as ReactPointerEvent } from "react";
 import { Sun, Moon } from "lucide-react";
 
+const THEME_STORAGE_KEY = "portfolio-theme";
+const THEME_CHANGE_EVENT = "portfolio-theme-change";
+
+const subscribeToTheme = (onStoreChange: () => void) => {
+  if (typeof window === "undefined") {
+    return () => {};
+  }
+
+  window.addEventListener("storage", onStoreChange);
+  window.addEventListener(THEME_CHANGE_EVENT, onStoreChange);
+
+  return () => {
+    window.removeEventListener("storage", onStoreChange);
+    window.removeEventListener(THEME_CHANGE_EVENT, onStoreChange);
+  };
+};
+
+const getThemeSnapshot = () => {
+  if (typeof window === "undefined") {
+    return "dark" as const;
+  }
+
+  const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+  if (storedTheme === "light" || storedTheme === "dark") {
+    return storedTheme;
+  }
+
+  return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+};
+
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<"dark" | "light">(() => {
-    if (typeof window === "undefined") {
-      return "dark";
-    }
-
-    const storedTheme = localStorage.getItem("portfolio-theme");
-    if (storedTheme === "light" || storedTheme === "dark") {
-      return storedTheme;
-    }
-
-    return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-  });
+  const theme = useSyncExternalStore(subscribeToTheme, getThemeSnapshot, () => "dark");
   const [isMobile, setIsMobile] = useState(false);
-  const [mobilePos, setMobilePos] = useState<{ x: number; y: number }>({ x: 16, y: 96 });
+  const [mobilePos, setMobilePos] = useState<{ x: number; y: number }>(() => {
+    if (typeof window === "undefined") {
+      return { x: 16, y: 96 };
+    }
+
+    const savedPos = localStorage.getItem("portfolio-theme-toggle-pos");
+    if (savedPos) {
+      try {
+        const parsed = JSON.parse(savedPos) as { x: number; y: number };
+        if (typeof parsed.x === "number" && typeof parsed.y === "number") {
+          return parsed;
+        }
+      } catch {
+        // Ignore invalid saved positions.
+      }
+    }
+
+    return { x: 16, y: 96 };
+  });
   const [dragging, setDragging] = useState(false);
   const dragStartRef = useRef<{ pointerX: number; pointerY: number; startX: number; startY: number } | null>(null);
 
@@ -32,29 +69,19 @@ export default function ThemeToggle() {
     syncViewportState();
     media.addEventListener("change", syncViewportState);
 
-    const savedPos = localStorage.getItem("portfolio-theme-toggle-pos");
-    if (savedPos) {
-      try {
-        const parsed = JSON.parse(savedPos) as { x: number; y: number };
-        if (typeof parsed.x === "number" && typeof parsed.y === "number") {
-          setMobilePos(parsed);
-        }
-      } catch {
-        // Ignore invalid saved positions.
-      }
-    }
-
     return () => media.removeEventListener("change", syncViewportState);
   }, []);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
-    localStorage.setItem("portfolio-theme", theme);
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
   }, [theme]);
 
   const toggleTheme = () => {
     document.documentElement.classList.add("theme-transition");
-    setTheme((currentTheme) => (currentTheme === "dark" ? "light" : "dark"));
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+    window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
 
     setTimeout(() => {
       document.documentElement.classList.remove("theme-transition");

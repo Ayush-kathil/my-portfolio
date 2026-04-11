@@ -12,7 +12,7 @@ const snapshotItems = [
   {
     icon: TrendingUp,
     title: "Current Focus",
-    body: "Summer 2027 internships in software engineering, ML infrastructure, and product-focused full stack roles.",
+    body: "Seeking Summer 2026 internships in software engineering, ML systems, and product-focused full-stack roles.",
   },
   {
     icon: Sparkles,
@@ -27,7 +27,7 @@ const snapshotItems = [
   {
     icon: Users,
     title: "Proof Signals",
-    body: "Deployed projects, open-source contributions, team leadership, and real-time ML work on standard hardware.",
+    body: "5+ deployed projects, open-source contributions, technical leadership experience, and real-time ML work on standard hardware.",
   },
 ];
 
@@ -73,7 +73,7 @@ export default function ProfessionalSnapshot() {
             </h2>
           </div>
           <p className="max-w-xl text-[clamp(0.98rem,4vw,1.2rem)] leading-relaxed text-[var(--text-secondary)]">
-            This is the short version of my profile: what I build, how I work, and why a recruiter can trust the signal quickly.
+            Quick recruiter view: what I build, how I execute, and why my project signal is ready for production teams.
           </p>
         </div>
 
@@ -106,7 +106,7 @@ export default function ProfessionalSnapshot() {
 
         <div className="mt-4 sm:mt-5 md:mt-6 rounded-3xl border border-[var(--border-color)] bg-[var(--bg-primary)] px-5 sm:px-6 md:px-8 py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <p className="text-sm sm:text-base text-[var(--text-secondary)]">
-            Strongest fit: teams that care about frontend quality, ML productization, and performance under real device constraints.
+            Strongest fit: teams that need engineers who can ship reliable interfaces and translate ML ideas into usable products.
           </p>
           <a
             href="#contact"

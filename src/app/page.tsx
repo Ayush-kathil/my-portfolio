@@ -15,7 +15,7 @@ const GitHubProjects = dynamic(() => import("@/components/GitHubProjects"));
 const Contact = dynamic(() => import("@/components/Contact"));
 const Footer = dynamic(() => import("@/components/Footer"));
 
-const subscribeToThemeStore = () => () => {};
+const subscribeToPreloaderStore = () => () => {};
 
 const getPreloaderSnapshot = () => {
   if (typeof window === "undefined") {
@@ -28,7 +28,7 @@ const getPreloaderSnapshot = () => {
 export default function Home() {
   const [preloaderDismissed, setPreloaderDismissed] = useState(false);
   const preloaderSeen = useSyncExternalStore(
-    subscribeToThemeStore,
+    subscribeToPreloaderStore,
     getPreloaderSnapshot,
     () => false,
   );
@@ -49,12 +49,12 @@ export default function Home() {
         <MobileGateway preloaderComplete={preloaderComplete} />
       </div>
 
-      <div className="hidden md:block">
-        <div className="sticky top-0 w-full h-[100svh] z-0 overflow-hidden">
+      <div className="hidden md:block relative z-10 w-full">
+        <section aria-label="Hero section" className="w-full">
           <Hero preloaderComplete={preloaderComplete} />
-        </div>
+        </section>
 
-        <div className="relative z-10 w-full">
+        <section aria-label="Portfolio sections" className="w-full">
           <ImpactMetrics />
           <ProfessionalSnapshot />
           <About />
@@ -63,7 +63,7 @@ export default function Home() {
           <GitHubProjects />
           <Contact />
           <Footer />
-        </div>
+        </section>
       </div>
     </main>
   );
