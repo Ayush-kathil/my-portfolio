@@ -5,6 +5,7 @@ import Image from "next/image";
 import * as motion from "framer-motion/client";
 import { ArrowUpRight, FileText, Github, Sparkles, ShieldCheck, Cpu } from "lucide-react";
 import { projectsData } from "@/data/projects";
+import ProfessionalSnapshot from "@/components/ProfessionalSnapshot";
 
 interface MobileGatewayProps {
   preloaderComplete?: boolean;
@@ -100,6 +101,10 @@ export default function MobileGateway({ preloaderComplete = true }: MobileGatewa
               <p className="text-sm text-[var(--text-secondary)] leading-relaxed">Default to secure and privacy-conscious implementation choices.</p>
             </div>
           </div>
+        </motion.section>
+
+        <motion.section variants={cardVariants} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} className="mt-5">
+          <ProfessionalSnapshot />
         </motion.section>
 
         <motion.section id="projects" variants={cardVariants} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} className="mt-5 scroll-mt-24">

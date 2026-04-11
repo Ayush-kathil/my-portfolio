@@ -7,6 +7,7 @@ import Preloader from "@/components/Preloader";
 import MobileGateway from "@/components/MobileGateway";
 
 const ImpactMetrics = dynamic(() => import("@/components/ImpactMetrics"));
+const ProfessionalSnapshot = dynamic(() => import("@/components/ProfessionalSnapshot"));
 const About = dynamic(() => import("@/components/About"));
 const Experience = dynamic(() => import("@/components/Experience"));
 const FeaturedProjects = dynamic(() => import("@/components/FeaturedProjects"));
@@ -55,6 +56,7 @@ export default function Home() {
 
         <div className="relative z-10 w-full">
           <ImpactMetrics />
+          <ProfessionalSnapshot />
           <About />
           <Experience />
           <FeaturedProjects />

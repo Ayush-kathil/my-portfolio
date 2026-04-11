@@ -29,7 +29,7 @@ export default function Navbar() {
       return;
     }
 
-    const sectionIds = ["gateway", "projects", "contact"];
+    const sectionIds = ["gateway", "snapshot", "projects", "contact"];
     const updateActiveSection = () => {
       let nextActive = sectionIds[0];
       let minDistance = Number.POSITIVE_INFINITY;
@@ -70,6 +70,7 @@ export default function Navbar() {
         <ul className="flex gap-4 md:gap-8 px-8 py-3 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)]/60 backdrop-blur-xl shadow-md pointer-events-auto transition-colors duration-300">
         {[
           { name: "About", id: "about" },
+          { name: "Snapshot", id: "snapshot" },
           { name: "Experience", id: "experience" },
           { name: "Projects", id: "projects" },
           { name: "Contact", id: "contact" },
@@ -93,9 +94,10 @@ export default function Navbar() {
       </nav>
 
       <nav aria-label="Mobile Primary" className="md:hidden fixed bottom-0 left-0 w-full z-[9988] px-3 pb-[calc(env(safe-area-inset-bottom)+10px)] pt-2 pointer-events-none">
-        <ul className="grid grid-cols-3 gap-2 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/88 backdrop-blur-xl p-2 shadow-lg pointer-events-auto">
+        <ul className="grid grid-cols-4 gap-1.5 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/88 backdrop-blur-xl p-2 shadow-lg pointer-events-auto">
           {[
             { name: "Gateway", id: "gateway" },
+            { name: "Snapshot", id: "snapshot" },
             { name: "Projects", id: "projects" },
             { name: "Contact", id: "contact" },
           ].map((item) => (
