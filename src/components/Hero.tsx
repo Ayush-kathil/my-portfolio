@@ -38,8 +38,7 @@ export default function Hero({ preloaderComplete = true }: { preloaderComplete?:
             </Link>
             <a
               href="/resume.pdf"
-              target="_blank"
-              rel="noreferrer"
+              download
               className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--border-color)] bg-[var(--bg-primary)] px-6 py-3.5 text-sm font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg-secondary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--text-primary)]"
             >
               Download Resume <Download className="h-4 w-4" />

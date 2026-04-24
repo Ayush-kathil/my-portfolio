@@ -110,7 +110,7 @@ export default function Contact() {
               <span className="inline-flex items-center gap-2 text-sm font-medium"><Phone className="w-4 h-4" /> Call</span>
               <ArrowUpRight className="w-4 h-4" />
             </a>
-            <a href="/resume.pdf" target="_blank" rel="noreferrer" className="inline-flex items-center justify-between rounded-2xl border border-[var(--border-color)] px-5 py-4 bg-[var(--bg-secondary)] hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-colors">
+            <a href="/resume.pdf" download className="inline-flex items-center justify-between rounded-2xl border border-[var(--border-color)] px-5 py-4 bg-[var(--bg-secondary)] hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-colors">
               <span className="inline-flex items-center gap-2 text-sm font-medium"><FileText className="w-4 h-4" /> Resume</span>
               <ArrowUpRight className="w-4 h-4" />
             </a>

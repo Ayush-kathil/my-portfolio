@@ -70,8 +70,7 @@ export default function MobileGateway({ preloaderComplete = true }: MobileGatewa
           <div className="mt-6 grid grid-cols-1 gap-3">
             <a
               href="/resume.pdf"
-              target="_blank"
-              rel="noreferrer"
+              download
               className="inline-flex items-center justify-between rounded-full border border-[var(--border-color)] px-5 py-3.5 bg-[var(--bg-primary)] hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-colors"
             >
               <span className="inline-flex items-center gap-2 text-sm font-medium"><FileText size={16} /> Resume</span>
